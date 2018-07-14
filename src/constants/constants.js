@@ -2,9 +2,9 @@
  * Created by piyush on 7/13/18.
  */
 
-const BASE_URL = 'http://18.221.153.152:7777';
+const BASE_URL = 'http://18.221.153.152:6767';
 
-const API_BASE_URL = `${BASE_URL}/api/v1`;
+const API_BASE_URL = `${BASE_URL}/api/v1/`;
 
 const appUrl = {
     LOGIN_URL                : API_BASE_URL + 'login',

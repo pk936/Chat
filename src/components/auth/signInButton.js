@@ -20,10 +20,12 @@ export default class SignInButton extends React.Component {
 
     render(){
         let {authenticating, validateCredentials}= this.props;
+        let disableButton = authenticating ? {disabled:'disabled'} : {};
 
         return (
             <Button title="signin" transparent bordered rounded light block
                     onPress={validateCredentials}
+                    {...disableButton}
                     style={{backgroundColor:'transparent', marginTop:20}}
                     iconRight>
 

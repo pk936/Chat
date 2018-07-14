@@ -2,15 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
-import {Container,Toast, Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
+import {Container,Toast, Thumbnail,Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
 import SignInForm from "./signInForm";
 import {signInRequest,signInSuccess,signInFailure} from './signInActions';
 import { KeyboardAvoidingView } from 'react-native';
+import signinConstraints from '../../validation/signinVaidations';
+import {validate} from 'validate.js';
 
 const style = StyleSheet.create({
     container:{
         backgroundColor: '#556edf', //'#584692'
-        flex:1,
     },
     view:{
         // flex:1,
@@ -20,13 +21,17 @@ const style = StyleSheet.create({
     },
     image:{
         width:50,
-        height:50
+        height:50,
+        alignSelf:'center'
     }
 })
 
 class SignInContainer extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            authenticating:false
+        }
     }
 
     componentDidMount(){
@@ -35,30 +40,43 @@ class SignInContainer extends React.Component {
 
     onSubmitCredentials = (credentials) => {
         this.setState({authenticating:true});
-        this.props.onSubmitCredentials(credentials).then(result=>{
-            this.props.navigation.navigate('Home');
-        }).catch(err=>{
-            console.log('err', err);
+        let err = validate({...credentials},signinConstraints);
+        if(err) {
             this.setState({error: true, authenticating: false})
             Toast.show({
-                text: 'Invalid credentials',
+                text: err.username ? err.username[0] : err.password[0],
                 buttonText: 'okay'
             })
-        });
+        }else {
+            this.props.onSubmitCredentials(credentials).then(result => {
+                this.props.navigation.navigate('Home');
+            }).catch(err => {
+                this.setState({error: true, authenticating: false})
+                Toast.show({
+                    text: err,
+                    buttonText: 'okay'
+                })
+            });
+        }
     }
 
     render(){
         // console.log('.',this.props);
-        let {navigation} = this.props
+        let {user} = this.props;
+        let {authenticating} = this.state;
         return (
-            <Container paddr style={style.container}>
-                <Content contentContainerStyle={{ flexGrow: 1 }}>
+            <Container style={style.container}>
+                <Content padder contentContainerStyle={{ flexGrow: 1 }}>
                     <Grid style={style.view}>
                         <Col>
-                            <KeyboardAvoidingView behavior="padding">
-                                <Image style={style.image}
+                            {/*style={{alignItems:'center'}}*/}
+                            <Thumbnail style={style.image}
                                        source={require('../../../assets/images/ibism_logo.png')}/>
-                                <SignInForm onSubmitCredentials={this.onSubmitCredentials} />
+
+                            <KeyboardAvoidingView behavior="padding">
+                                <SignInForm
+                                    authenticating={authenticating}
+                                    onSubmitCredentials={this.onSubmitCredentials} />
                             </KeyboardAvoidingView>
                         </Col>
                     </Grid>
@@ -69,8 +87,9 @@ class SignInContainer extends React.Component {
 }
 
 const mapStateToProps = (state) =>{
+    console.log('STATE', state);
     return {
-        User:state.signin
+        User:state.user
     }
 }
 
@@ -78,10 +97,17 @@ const mapDispatchToProps = (dispatch) =>{
     return {
         onSubmitCredentials(credentials){
             return new Promise((resolve, reject)=>{
-                console.log('credentials', credentials)
                 dispatch(signInRequest(credentials)).then(result => {
-                    console.log('RESULT....', result);
-                    resolve(result);
+                    if(result.payload.data.success){
+                        dispatch(signInSuccess(result.payload.data))
+                        resolve(result);
+                    }else{
+                        dispatch(signInFailure('Invalid Credentials !'))
+                        reject()
+                    }
+                }).catch(err=>{
+                    dispatch(signInFailure('Something went wrong !'))
+                    reject()
                 })
             })
         }

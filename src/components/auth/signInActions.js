@@ -16,34 +16,28 @@ export function signInRequest(credentials) {
     //     console.log('RES', res, username);
     // })
 
-    console.log('credentials 2', credentials)
+    let request = axios({
+        method:'post',
+        url:APP_URL.LOGIN_URL,
+        data:{email:username,password}
+    })
 
     return {
         type: SIGN_IN_REQUEST,
-        payload:{
-            data:credentials,
-            error:'',
-            message:''
-        }
+        payload:request
     }
 }
 
-export const signInSuccess = () => {
+export const signInSuccess = (payload) => {
     return {
-        type: SIGN_IN_REQUEST,
-        payload:{
-            error:null,
-            message:'LOGGED IN'
-        }
+        type: SIGN_IN_SUCCESS,
+        payload
     }
 }
 
-export const signInFailure = () => {
+export const signInFailure = (err) => {
     return {
-        type: SIGN_IN_REQUEST,
-        payload:{
-            error:true,
-            message:'SOME PRBLOM HERE'
-        }
+        type: SIGN_IN_FAILURE,
+        payload:err
     }
 }

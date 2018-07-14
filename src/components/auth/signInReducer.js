@@ -6,17 +6,18 @@ const {
 
 
 const initialState = {
-    signIn: {loading:false, error:false}
+    user: {user:null, loading:false, error:false}
 }
 
 export default signInReducer = (state=initialState, action) => {
-    switch(action.type){
+    console.log('action', action.payload);
+    switch (action.type) {
         case SIGN_IN_REQUEST:
-            return {...state, loading:true};
+            return {...state, loading: true};
         case SIGN_IN_SUCCESS:
-            return {...state, loading:false, error:true,message:action.payload.message};
+            return {...state, user: action.payload, loading: false, error: true};
         case SIGN_IN_FAILURE:
-            return {...state, loading:false, error:action.payload.error, message:action.payload.message};
+            return {...state, user: null, loading: false, error: action.payload};
     }
 
     return {...state};

@@ -52,7 +52,7 @@ export default class HomeScreen extends React.Component {
                         {/*}}*/}
                         {/*source={require('../../../assets/images/home_screen_background.png')}*/}
                     {/*/>*/}
-                    <Thumbnail large
+                    <Thumbnail large style={{alignSelf:'center'}}
                            source={require('../../../assets/images/default_profile_img.jpeg')}
                        />
                 </View>

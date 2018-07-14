@@ -5,7 +5,7 @@
 import React from 'react';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import {StyleSheet,View} from 'react-native';
-import {Container, Header,Content,Form, Item,Input, Label, Spinner,Button,Text, Icon, Toast} from 'native-base';
+import {Container, Header,Content,Form, Item,Input,InputGroup, Label, Spinner,Button,Text, Icon, Toast} from 'native-base';
 import {AsyncStorage} from 'react-native';
 
 
@@ -27,13 +27,15 @@ export default class PasswordInput extends React.Component {
         }
 
         return (
-            <Item {...wrongCredential}>
+            <InputGroup>
                 <Icon name='ios-unlock' style={{color:'#fff'}}/>
                 <Input style={{color:'#fff'}}
+                       regular
                        secureTextEntry
-                       returnKeyType="next"
+                       returnKeyType="go"
+                       selectionColor="orange"
                        onChangeText={this.changePassword} />
-            </Item>
+            </InputGroup>
         )
     }
 }
