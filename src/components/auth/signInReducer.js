@@ -9,16 +9,16 @@ const initialState = {
     user: {user:null, loading:false, error:false}
 }
 
-export default signInReducer = (state=initialState, action) => {
-    console.log('action', action.payload);
+export default SignInReducer = (state=initialState, action) => {
+    // console.log('action', action);
     switch (action.type) {
         case SIGN_IN_REQUEST:
-            return {...state, loading: true};
+            return {...state, user:{user:null, loading: true, error: false}};
         case SIGN_IN_SUCCESS:
-            return {...state, user: action.payload, loading: false, error: true};
+            return {...state, user:{user:action.payload, loading: false, error: false}};
         case SIGN_IN_FAILURE:
-            return {...state, user: null, loading: false, error: action.payload};
+            return {...state, user:{user:null, loading: false, error: action.payload}};
+        default:
+            return state;
     }
-
-    return {...state};
 }

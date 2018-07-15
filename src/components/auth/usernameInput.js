@@ -28,14 +28,14 @@ export default class UsernameInput extends React.Component {
         }
 
         return (
-            <InputGroup borderType="regular">
+            <Item>
                 <Icon name='ios-person' style={{color:'#fff'}}/>
                 <Input style={{color:'#fff'}} autoFocus
                        selectionColor="orange"
                        keyboardType="email-address"
                        returnKeyType="next"
                        onChangeText={this.changeUserName} />
-            </InputGroup>
+            </Item>
         )
     }
 }

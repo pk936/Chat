@@ -3,14 +3,32 @@
  */
 import React from 'react';
 import {View,Text} from 'native-base';
-const WrapperContainer = (props) => {
-    let {navigation} = props;
-    navigation.navigate('SignInContainer');
-    return (
-        <View>
-            <Text>Logging you in...</Text>
-        </View>
-    );
-}
+import WelcomeUser from "./components/home/welcomeUser";
+import {AsyncStorage} from 'react-native';
 
-export default WrapperContainer;
+export default class WrapperContainer extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            isUserAuthorized:false
+        }
+    }
+
+    componentDidMount(){
+        // let token = AsyncStorage.getItem('jwt').then(userAuthenticate=>{
+        //     if(userAuthenticate){
+        //         this.setState({isUserAuthorized:true})
+        //         // this.props.navigation.navigate('HomeScreen')
+        //     }
+        // })
+        // this.props.navigation.navigate('Home');
+    }
+
+    render(){
+        return (
+            <View style={{flex:1}}>
+                <Text>123</Text>
+            </View>
+        )
+    }
+}

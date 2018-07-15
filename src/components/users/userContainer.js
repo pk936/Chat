@@ -26,7 +26,7 @@ const style = StyleSheet.create({
     }
 })
 
-class SignInContainer extends React.Component {
+class UserContainer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -34,26 +34,12 @@ class SignInContainer extends React.Component {
         }
     }
 
-    onSubmitCredentials = (credentials) => {
-        let err = validate({...credentials},signinConstraints);
-        if(err) {
-            Toast.show({
-                text: err.username ? err.username[0] : err.password[0],
-                buttonText: 'okay'
-            })
-        }else {
-            // this.setState({authenticating:true});
+    // componentWillReceiveProps(nxtProps){
+    //     console.log('NXT PROPSSSSSSSSSSSSSSSSS', nxtProps)
+    // }
 
-            this.props.onSubmitCredentials(credentials).then(result => {
-                this.props.navigation.navigate('Home');
-            }).catch(err => {
-                // this.setState({error: true, authenticating: false})
-                Toast.show({
-                    text: err,
-                    buttonText: 'okay'
-                })
-            });
-        }
+    onSubmitCredentials = (credentials) => {
+
     }
 
     render(){
@@ -64,13 +50,6 @@ class SignInContainer extends React.Component {
                 <Content padder contentContainerStyle={{ flexGrow: 1 }}>
                     <Grid style={style.view}>
                         <Col>
-                            {/*style={{alignItems:'center'}}*/}
-                            <Thumbnail style={style.image}
-                                       source={require('../../../assets/images/ibism_logo.png')}/>
-
-                                <SignInForm
-                                    authenticating={User.loading}
-                                    onSubmitCredentials={this.onSubmitCredentials} />
 
                         </Col>
                     </Grid>
@@ -108,4 +87,4 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(SignInContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(UserContainer);

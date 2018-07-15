@@ -6,7 +6,7 @@ import Expo from "expo";
 import {Provider} from 'react-redux';
 import store from './store';
 import SignInContainer from "./components/auth/signInContainer";
-import Stack from './screens/screens';
+import MainNavigator from './screens/mainNavigator';
 
 export default class App extends React.Component {
 
@@ -33,7 +33,7 @@ export default class App extends React.Component {
       <Provider store={store}>
             {/* Root is needed otherwise ActionSheet, Toast etc won't work . */}
             <Root>
-                <Stack/>
+                <MainNavigator/>
             </Root>
       </Provider>
     );

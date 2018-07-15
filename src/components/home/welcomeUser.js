@@ -3,8 +3,10 @@
  */
 
 import React from 'react';
+import {connect} from 'react-redux';
 import {StyleSheet, Image} from 'react-native';
 import {View,Grid, Row, Spinner, Container, Header, List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import jwtDecode from 'jwt-decode';
 
 const style = StyleSheet.create({
     container:{
@@ -19,24 +21,29 @@ const style = StyleSheet.create({
     }
 })
 
-export default class HomeScreen extends React.Component {
+class WelcomeUser extends React.Component {
     constructor(props){
         super();
     }
 
-    // componentDidMount(){
-    //     let req1 = this.props.fetchUsers;
-    //     let req2 = this.props.fetchMessages;
-    //
-    //     Promise.all(req1,req2).then(result=>{
-    //         console.log('FETCHED ALL', result)
-    //     })
-    // }
+    componentDidMount(){
+        // let req1 = this.props.fetchUsers;
+        // let req2 = this.props.fetchMessages;
+        //
+        // Promise.all(req1,req2).then(result=>{
+        //     console.log('FETCHED ALL', result)
+        // })
+
+        setTimeout(()=>{
+            this.props.navigation.navigate('Home');
+        },3000)
+    }
 
     render(){
-        let {user} = this.props;
-        return (
+        let {User} = this.props;
+        console.log('ActiveUser', User)
 
+        return (
             <View style={{
                 flex: 1,
                 justifyContent: 'center',
@@ -44,21 +51,13 @@ export default class HomeScreen extends React.Component {
                 backgroundColor: '#556edf',
             }}>
                 <View style={{height:150, width:200}}>
-                    {/*<Thumbnail*/}
-                        {/*large*/}
-                        {/*style={{*/}
-                            {/*width: 300, height: 300, position: 'absolute',*/}
-                            {/*resizeMode: 'center'*/}
-                        {/*}}*/}
-                        {/*source={require('../../../assets/images/home_screen_background.png')}*/}
-                    {/*/>*/}
                     <Thumbnail large style={{alignSelf:'center'}}
                            source={require('../../../assets/images/default_profile_img.jpeg')}
-                       />
+                    />
                 </View>
                 <View>
                     <Text style={style.heading}>
-                        Welcome Piyush
+                        Welcome, {User.user ? User.user.name : ''}
                     </Text>
                 </View>
                 <View>
@@ -70,8 +69,9 @@ export default class HomeScreen extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+    // console.log('STATE............', state)
     return {
-        User:state
+        User:state.ActiveUser.user
     }
 }
 
@@ -104,3 +104,5 @@ const mapDispatchProps = (dispatch) => {
         }
     )
 }
+
+export default connect(mapStateToProps)(WelcomeUser);

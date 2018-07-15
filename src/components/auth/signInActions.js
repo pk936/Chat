@@ -8,6 +8,8 @@ const {
 } = require('./keyMirror').default;
 import axios from'axios';
 import APP_URL from '../../constants/constants';
+import jwtDecode from 'jwt-decode';
+import {AsyncStorage} from 'react-native';
 
 export function signInRequest(credentials) {
     let {username,password} = credentials;
@@ -29,9 +31,14 @@ export function signInRequest(credentials) {
 }
 
 export const signInSuccess = (payload) => {
+    console.log('payload',payload)
+    let token = payload.token;
+    AsyncStorage.setItem('jwt', token);
+    let user = jwtDecode(token);
+    console.log('usersssssssssssssssss',user)
     return {
         type: SIGN_IN_SUCCESS,
-        payload
+        payload:user
     }
 }
 

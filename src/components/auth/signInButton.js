@@ -8,32 +8,20 @@ import {StyleSheet,View} from 'react-native';
 import {Container, Header,Content,Form, Item,Input, Label, Spinner,Button,Text, Icon, Toast} from 'native-base';
 import {AsyncStorage} from 'react-native';
 
-export default class SignInButton extends React.Component {
-    constructor(props){
-        super();
-    }
+const SignInButton = (props) => {
+    let {authenticating, validateCredentials} = props;
+    // console.log('authenticating',authenticating)
+    return (
+        <Button title="signin" rounded light block
+                onPress={validateCredentials}
+                disabled={authenticating}
+                style={{marginTop:20}}
+                iconRight>
 
-    changePassword = (e) => {
-        this.props.changePassword(e);
-        // this.props.navigation.navigate('Home');
-    }
-
-    render(){
-        let {authenticating, validateCredentials}= this.props;
-        let disableButton = authenticating ? {disabled:'disabled'} : {};
-
-        return (
-            <Button title="signin" transparent bordered rounded light block
-                    onPress={validateCredentials}
-                    {...disableButton}
-                    style={{backgroundColor:'transparent', marginTop:20}}
-                    iconRight>
-
-                <Text>SignIn</Text>
-                {authenticating ? <Spinner color="#fff" /> : <Icon name="ios-log-in" />}
-            </Button>
-        )
-    }
+            <Text>SignIn</Text>
+            {authenticating ? <Spinner color="#fff" /> : <Icon name="ios-log-in" />}
+        </Button>
+    )
 }
 
 const style = StyleSheet.create({
@@ -43,3 +31,5 @@ const style = StyleSheet.create({
         alignContent: 'space-around',
     }
 })
+
+export default SignInButton;

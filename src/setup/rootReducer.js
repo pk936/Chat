@@ -2,9 +2,10 @@
  * Created by piyush on 7/7/18.
  */
 import {combineReducers} from 'redux';
-import signInReducer from '../components/auth/signInReducer';
+import SignInReducer from '../components/auth/signInReducer';
+
 const rootReducer = combineReducers({
-    signIn:signInReducer
+    ActiveUser:SignInReducer
 })
 
 export default rootReducer;

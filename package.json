@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "expo": "^27.0.1",
+    "jwt-decode": "^2.2.0",
     "key-mirror": "^1.0.1",
     "native-base": "^2.7.0",
     "react": "16.3.1",

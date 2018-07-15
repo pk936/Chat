@@ -27,15 +27,14 @@ export default class PasswordInput extends React.Component {
         }
 
         return (
-            <InputGroup>
+            <Item>
                 <Icon name='ios-unlock' style={{color:'#fff'}}/>
                 <Input style={{color:'#fff'}}
-                       regular
                        secureTextEntry
                        returnKeyType="go"
                        selectionColor="orange"
                        onChangeText={this.changePassword} />
-            </InputGroup>
+            </Item>
         )
     }
 }
