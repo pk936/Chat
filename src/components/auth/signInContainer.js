@@ -45,7 +45,10 @@ class SignInContainer extends React.Component {
             // this.setState({authenticating:true});
 
             this.props.onSubmitCredentials(credentials).then(result => {
-                this.props.navigation.navigate('Home');
+                // result contains token, exp etc.
+                this.props.navigation.navigate('WelcomeUser', {
+                    'userName':result.name
+                });
             }).catch(err => {
                 // this.setState({error: true, authenticating: false})
                 Toast.show({
@@ -94,14 +97,14 @@ const mapDispatchToProps = (dispatch) =>{
                 dispatch(signInRequest(credentials)).then(result => {
                     if(result.payload.data.success){
                         dispatch(signInSuccess(result.payload.data))
-                        resolve(result);
+                        resolve(result.payload.data);
                     }else{
                         dispatch(signInFailure('Invalid Credentials !'))
                         reject('Invalid Credentials !')
                     }
                 }).catch(err=>{
-                    dispatch(signInFailure('Something went wrong !'))
-                    reject('Invalid Credentials !')
+                    dispatch(signInFailure('Cannot login due to some technical issue !'))
+                    reject('Cannot login due to some technical issue !')
                 })
             })
         }

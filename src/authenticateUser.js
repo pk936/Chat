@@ -3,6 +3,7 @@
  */
 import  React from 'react';
 // import welcomeScreen from "./components/home/welcomeScreen";
+import jwtDecode from 'jwt-decode';
 import {
     ActivityIndicator,
     AsyncStorage,
@@ -12,18 +13,19 @@ import {
 } from 'react-native';
 
 const AuthenticateUser = (props) => {
-        let token = AsyncStorage.getItem('jwt').then(token=>{
-            console.log('token',token);
-
+        AsyncStorage.getItem('jwt').then(token=>{
+            let userName = jwtDecode(token).name;
             if(token){
-                props.navigation.navigate('WelcomeUser'); //  Or App
+                props.navigation.navigate('WelcomeUser', {
+                    userName
+                }); //  Or App
             }
         }).catch(err=>{
             props.navigation.navigate('Auth');
         })
 
     return(<View>
-        <StatusBar barStyle="default" />
+        {/*<StatusBar barStyle="default" />*/}
     </View>)
 }
 

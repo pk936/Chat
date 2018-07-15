@@ -3,11 +3,7 @@ import {connect} from 'react-redux';
 import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import {Container,Toast, Thumbnail,Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
-import SignInForm from "./signInForm";
-import {signInRequest,signInSuccess,signInFailure} from './signInActions';
-import { KeyboardAvoidingView } from 'react-native';
-import signinConstraints from '../../validation/signinVaidations';
-import {validate} from 'validate.js';
+import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from './userActions';
 
 const style = StyleSheet.create({
     container:{
@@ -68,19 +64,20 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        onSubmitCredentials(credentials){
-            return new Promise((resolve, reject)=>{
-                dispatch(signInRequest(credentials)).then(result => {
-                    if(result.payload.data.success){
-                        dispatch(signInSuccess(result.payload.data))
-                        resolve(result);
-                    }else{
-                        dispatch(signInFailure('Invalid Credentials !'))
-                        reject('Invalid Credentials !')
-                    }
-                }).catch(err=>{
-                    dispatch(signInFailure('Something went wrong !'))
-                    reject('Invalid Credentials !')
+        fetchUsers(limit,offset){
+            return new Promise ((resolve,reject) => {
+                AsyncStorage.getItem('jwt').then(token=>{
+                    console.log('TOKEN IS', token)
+                    dispatch(fetchUsersRequest(limit,offset,token)).then((result) => {
+                        if(result.payload.data.success){
+                            dispatch(fetchUsersSuccess(result))
+                        }else{
+                            dispatch(fetchUsersFailure(result))
+                        }
+                    }).catch(err=>{
+                        dispatch(fetchUsersFailure('Something went wrong !'))
+                        reject('Something went wrong !')
+                    })
                 })
             })
         }
