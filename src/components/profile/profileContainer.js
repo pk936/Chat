@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import {Container,Toast, Thumbnail,Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
-import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from './userActions';
-import UserList from './userList';
+import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from './profileActions';
+import UserList from './userProfile';
 
 const style = StyleSheet.create({
     container:{
@@ -43,7 +43,7 @@ class UserContainer extends React.Component {
                 <Content padder contentContainerStyle={{ flexGrow: 1 }}>
                     <Grid style={style.view}>
                         <Col>
-                            <UserList/>
+                            <Text>MY PROFILE</Text>
                         </Col>
                     </Grid>
                 </Content>

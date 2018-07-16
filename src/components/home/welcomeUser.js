@@ -34,22 +34,30 @@ class WelcomeUser extends React.Component {
 
         Promise.all(this.props.fetchUsers()).then(result=>{
             // console.log('FETCHED ALL', result)
-            // this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Home');
         })
 
-        setTimeout(
-            ()=>{
-                AsyncStorage.removeItem('jwt', '')
-            },3000
-        )
+        //  setTimeout(
+        //     ()=>{
+        //         AsyncStorage.removeItem('jwt')
+        //     },3000
+        // )
     }
+
+    // componentDidUpdatte(){
+    //     AsyncStorage.getItem('jwt').then(tokn=>{
+    //         if(tokn){
+    //             this.setState({userName:jwtDecode(tokn).name})
+    //         }
+    //     })
+    // }
 
     render(){
         let {User} = this.props;
-        let {navigation} = this.props;
-        // console.log('ActiveUser', User);
+        // let {navigation} = this.props;
+        // console.log('ActiveUser...', User);
 
-        let userName = navigation.getParam('userName');
+        let userName = User.data ? User.data.name : '';
 
         return (
             <View style={{

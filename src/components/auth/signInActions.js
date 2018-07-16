@@ -31,11 +31,11 @@ export function signInRequest(credentials) {
 }
 
 export const signInSuccess = (payload) => {
-    console.log('payload',payload)
+    // console.log('payload',payload)
     let token = payload.token;
     AsyncStorage.setItem('jwt', token);
     let user = jwtDecode(token);
-    console.log('usersssssssssssssssss',user)
+    // console.log('usersssssssssssssssss',user)
     return {
         type: SIGN_IN_SUCCESS,
         payload:user

@@ -6,7 +6,7 @@ import React from 'react';
 import { Container, Header,List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import {connect} from 'react-redux';
 
-class MessageLists extends React.Component {
+class userProfile extends React.Component {
     constructor(props){
         super();
     }
@@ -48,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(MessageLists);
+export default connect(mapStateToProps,mapDispatchToProps)(userProfile);

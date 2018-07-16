@@ -2,10 +2,11 @@
  * Created by piyush on 7/10/18.
  */
 import React from 'react';
-import {View,Text} from 'native-base';
+import {View,Text, Container, Header, Item, Tabs, Tab,Input, Icon, Content,Footer,FooterTab,Button } from 'native-base';
 import WelcomeUser from "./components/home/welcomeUser";
 import {AsyncStorage} from 'react-native';
-
+import UserList from "./components/users/userList";
+import BottomTabNavigator from './screens/bottomTabNavigator';
 export default class WrapperContainer extends React.Component {
     constructor(props){
         super(props);
@@ -15,20 +16,51 @@ export default class WrapperContainer extends React.Component {
     }
 
     componentDidMount(){
-        // let token = AsyncStorage.getItem('jwt').then(userAuthenticate=>{
-        //     if(userAuthenticate){
-        //         this.setState({isUserAuthorized:true})
-        //         // this.props.navigation.navigate('HomeScreen')
-        //     }
-        // })
-        // this.props.navigation.navigate('Home');
+        let token = AsyncStorage.getItem('jwt').then(userAuthenticate=>{
+            if(userAuthenticate){
+                this.setState({isUserAuthorized:true})
+                // this.props.navigation.navigate('HomeScreen')
+            }
+        }).catch(res=>{
+            this.props.navigation.navigate('Auth');
+        })
     }
 
     render(){
         return (
-            <View style={{flex:1}}>
-                <Text>123</Text>
-            </View>
+            <Container>
+                <Header searchBar rounded>
+                    <Item>
+                        <Icon name="ios-search" />
+                        <Input placeholder="search"/>
+                        <Icon name="ios-people" />
+                    </Item>
+                </Header>
+                <Content>
+                    <Tabs>
+                        <Tab heading="Messages">
+                            <UserList />
+                        </Tab>
+                        <Tab heading="Users">
+
+                        </Tab>
+                    </Tabs>
+                </Content>
+                <Footer>
+                    <FooterTab>
+                        <Button onPress={e=>this.props.navigation.navigate('Profile')}>
+                            <Text>
+                                Profile
+                            </Text>
+                        </Button>
+                        <Button onPress={e=>this.props.navigation.navigate('Profile')}>
+                            <Text>
+                                Settings
+                            </Text>
+                        </Button>
+                    </FooterTab>
+                </Footer>
+            </Container>
         )
     }
 }

@@ -14,8 +14,8 @@ const MainNavigator = createSwitchNavigator({
     Auth:AuthScreensStack
 },
     {
-        initialRouteName:'AuthenticateUserOnAppLoad'
-    }
+        initialRouteName:'AuthenticateUserOnAppLoad',
+    },
 )
 
 export default MainNavigator;

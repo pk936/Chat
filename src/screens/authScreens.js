@@ -7,7 +7,7 @@ import SignInContainer from '../components/auth/signInContainer';
 // used for signin, register, forgot password
 
 const AuthScreen = createStackNavigator({
-    SignInContainer: {screen: SignInContainer},
+    SignInContainer: {screen: SignInContainer}
 });
 
 export default AuthScreen;
