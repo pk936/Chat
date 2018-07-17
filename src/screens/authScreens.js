@@ -8,6 +8,8 @@ import SignInContainer from '../components/auth/signInContainer';
 
 const AuthScreen = createStackNavigator({
     SignInContainer: {screen: SignInContainer}
+},{
+    headerMode:'none',
 });
 
 export default AuthScreen;

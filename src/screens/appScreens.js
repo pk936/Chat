@@ -12,8 +12,8 @@ const AppScreens = createStackNavigator({
     Home: {screen: WrapperContainer},
     Profile:{screen:BottomTabNavigator}
 },{
-    headerMode:'none'
-},
+    headerMode:'none',
+}
     // {
     // initialRouteName:Home
     // }

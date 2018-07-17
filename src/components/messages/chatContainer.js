@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import {Container,Toast, Thumbnail,Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
-import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from './userActions';
-import UserList from './userList';
+import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from './profileActions';
+import UserList from './userProfile';
 
 const style = StyleSheet.create({
     container:{
@@ -36,18 +36,24 @@ class UserContainer extends React.Component {
     // }
 
     render(){
-        // console.log('.',this.props);
-        let {Users} = this.props;
+        let {User} = this.props;
         return (
-            <UserList users={Users}/>
+            <Container style={style.container}>
+                <Header>
+
+                </Header>
+                <Content padder contentContainerStyle={{ flexGrow: 1 }}>
+
+                </Content>
+            </Container>
         )
     }
 }
 
 const mapStateToProps = (state) =>{
-    console.log('STATE', state.Users);
+    // console.log('STATE', state);
     return {
-        Users:state.Users.users.data
+        User:state.ActiveUser.user
     }
 }
 
@@ -56,7 +62,6 @@ const mapDispatchToProps = (dispatch) =>{
         fetchUsers(limit,offset){
             return new Promise ((resolve,reject) => {
                 AsyncStorage.getItem('jwt').then(token=>{
-                    // console.log('TOKEN IS', token)
                     dispatch(fetchUsersRequest(limit,offset,token)).then((result) => {
                         if(result.payload.data.success){
                             dispatch(fetchUsersSuccess(result))

@@ -12,9 +12,9 @@ class userProfile extends React.Component {
     }
 
     render(){
-        if(this.props.Users){
-            console.log('Users', this.props.Users.data)
-        }
+        // if(this.props.Users){
+        //     console.log('Users', this.props.Users.data)
+        // }
         return (
 
             <List>

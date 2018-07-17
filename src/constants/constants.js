@@ -17,7 +17,7 @@ const appUrl = {
     PEOPLE_URL               : API_BASE_URL + 'users',
     TEAM_URL                 : API_BASE_URL + 'teams',
     SOCKET_URL               : BASE_URL,
-    CHAT_URL                 : API_BASE_URL + 'conversations/',
+    CHAT_URL                 : API_BASE_URL + 'conversations',
     NOTIFICATIONS_URL        : API_BASE_URL + 'notifications',
     READ_NOTIFICATIONS_URL   : API_BASE_URL + 'notificationread',
     USER_ROLE                : API_BASE_URL + 'roles',

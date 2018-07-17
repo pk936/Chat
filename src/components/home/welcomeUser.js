@@ -6,6 +6,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, Image, AsyncStorage} from 'react-native';
 import {View,Grid, Row, Spinner, Container, Header, List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
+import {fetchChatRequest,fetchChatSuccess,fetchChatFailure} from '../messages/chatActions';
 import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from '../users/userActions';
 
 import jwtDecode from 'jwt-decode';
@@ -30,12 +31,19 @@ class WelcomeUser extends React.Component {
 
     componentDidMount(){
         // let req1 = this.props.fetchUsers;
-        // let req2 = this.props.fetchMessages;
+        // let req2 = this.props.fetchChat;
 
-        Promise.all(this.props.fetchUsers()).then(result=>{
-            // console.log('FETCHED ALL', result)
-            this.props.navigation.navigate('Home');
-        })
+        AsyncStorage.getItem('jwt').then(tokn=> {
+            if (tokn) {
+                let userId = jwtDecode(tokn).id;
+                Promise.all(this.props.fetchUsers(), this.props.fetchChat(userId)).then(result => {
+                    // console.log('FETCHED ALL', result)
+                    this.props.navigation.navigate('Home');
+                })
+                // this.setState({userName:jwtDecode(tokn).name})
+            }
+        });
+
 
         //  setTimeout(
         //     ()=>{
@@ -85,7 +93,7 @@ class WelcomeUser extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('STATE............', state)
+    // console.log('STATE............', state)
     return {
         User:state.ActiveUser.user
     }
@@ -100,8 +108,6 @@ const mapDispatchProps = (dispatch) => {
                         console.log('result.payload', result.payload.data.meta.success);
                         if (result.payload.data.meta.success) {
                             dispatch(fetchUsersSuccess(result.payload.data.data))
-                            console.log('FETCH_USERS_SUCCESS 11111')
-
                             resolve(result.payload.data.data)
                         } else {
                             dispatch(fetchUsersFailure(result))
@@ -115,21 +121,24 @@ const mapDispatchProps = (dispatch) => {
             })
         },
 
-        // fetchMessages(){
-        //     return new Promise((resolve, reject) => {
-        //         dispatch(fetchMessages()).then((result) => {
-        //             console.log('FETCH MESSAGEGS', result)
-        //             if (result.success) {
-        //                 dispatch(fetchMessagesSuccess(result))
-        //             } else {
-        //                 dispatch(fetchMessagesFailure(result))
-        //             }
-        //         }).catch(err => {
-        //             dispatch(fetchUsersFailure('Something went wrong !'))
-        //             reject('Something went wrong !')
-        //         })
-        //     })
-        // }
+        fetchChat(userId){
+            return new Promise((resolve, reject) => {
+                AsyncStorage.getItem('jwt').then(token => {
+                    dispatch(fetchChatRequest(userId,token)).then((result) => {
+                        // console.log('FETCH MESSAGEGS', result)
+                        if (result.success) {
+                            dispatch(fetchChatSuccess(result))
+                        } else {
+                            dispatch(fetchChatFailure(result))
+                        }
+                    }).catch(err => {
+                        console.log('err', err)
+                        dispatch(fetchUsersFailure('Something went wrong !'))
+                        reject('Something went wrong !')
+                    })
+                })
+            })
+        }
     }
 }
 

@@ -6,46 +6,39 @@ import React from 'react';
 import { Container, Header,List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import {connect} from 'react-redux';
 
-class UserList extends React.Component {
+export default class UserList extends React.Component {
     constructor(props){
         super();
     }
 
     render(){
-        if(this.props.Users){
-            console.log('Users', this.props.Users.data)
-        }
-        return (
+        let {users} = this.props;
 
-            <List>
-                <ListItem avatar>
+        // if(users){
+        //     console.log('Users', users)
+        // }
+
+        // console.log('users', users)
+
+        let userList =  users ? users.map(user=>{
+            console.log('users', user.name)
+
+            return (
+
+                <ListItem avatar key={user.id}>
                     <Left>
                         <Thumbnail source={{ uri: 'Image URL' }} />
                     </Left>
                     <Body>
-                    <Text>Piyush Kumar</Text>
-                    <Text note>Doing what you like will always keep you happy . .</Text>
+                    <Text>{user.attributes.name}</Text>
+                    <Text note>{user.relationships.role.data.name}</Text>
                     </Body>
-                    <Right>
-                        <Text note>3:43 pm</Text>
-                    </Right>
                 </ListItem>
-            </List>
+            )
+        }) : null;
 
+        return (
+            <List>{userList}</List>
         )
     }
 }
-
-const mapStateToProps = (state) => {
-    return {
-        Users:state.Users.users
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(UserList);

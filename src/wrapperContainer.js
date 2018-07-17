@@ -5,7 +5,7 @@ import React from 'react';
 import {View,Text, Container, Header, Item, Tabs, Tab,Input, Icon, Content,Footer,FooterTab,Button } from 'native-base';
 import WelcomeUser from "./components/home/welcomeUser";
 import {AsyncStorage} from 'react-native';
-import UserList from "./components/users/userList";
+import UserContainer from "./components/users/userContainer";
 import BottomTabNavigator from './screens/bottomTabNavigator';
 export default class WrapperContainer extends React.Component {
     constructor(props){
@@ -39,10 +39,10 @@ export default class WrapperContainer extends React.Component {
                 <Content>
                     <Tabs>
                         <Tab heading="Messages">
-                            <UserList />
+
                         </Tab>
                         <Tab heading="Users">
-
+                            <UserContainer />
                         </Tab>
                     </Tabs>
                 </Content>

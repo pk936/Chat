@@ -35,15 +35,28 @@ class UserContainer extends React.Component {
     //     console.log('NXT PROPSSSSSSSSSSSSSSSSS', nxtProps)
     // }
 
+    logOut= (e) => {
+        AsyncStorage.removeItem('jwt');
+        this.props.navigation.navigate('Auth')
+    }
+
     render(){
         // console.log('.',this.props);
         let {User} = this.props;
         return (
             <Container style={style.container}>
+                <Header>
+
+                </Header>
                 <Content padder contentContainerStyle={{ flexGrow: 1 }}>
                     <Grid style={style.view}>
                         <Col>
                             <Text>MY PROFILE</Text>
+                            <Button onPress={e=>this.logOut(e)}>
+                                <Text>
+                                    Logout
+                                </Text>
+                            </Button>
                         </Col>
                     </Grid>
                 </Content>
@@ -64,7 +77,6 @@ const mapDispatchToProps = (dispatch) =>{
         fetchUsers(limit,offset){
             return new Promise ((resolve,reject) => {
                 AsyncStorage.getItem('jwt').then(token=>{
-                    console.log('TOKEN IS', token)
                     dispatch(fetchUsersRequest(limit,offset,token)).then((result) => {
                         if(result.payload.data.success){
                             dispatch(fetchUsersSuccess(result))
