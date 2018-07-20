@@ -6,7 +6,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, Image, AsyncStorage} from 'react-native';
 import {View,Grid, Row, Spinner, Container, Header, List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
-import {fetchChatRequest,fetchChatSuccess,fetchChatFailure} from '../messages/chatActions';
+import {fetchAllChatRequest,fetchAllChatSuccess,fetchAllChatFailure} from '../messages/chatActions';
 import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from '../users/userActions';
 
 import jwtDecode from 'jwt-decode';
@@ -31,12 +31,14 @@ class WelcomeUser extends React.Component {
 
     componentDidMount(){
         // let req1 = this.props.fetchUsers;
-        // let req2 = this.props.fetchChat;
+        // let req2 = this.props.fetchAllChat;
 
         AsyncStorage.getItem('jwt').then(tokn=> {
             if (tokn) {
                 let userId = jwtDecode(tokn).id;
-                Promise.all(this.props.fetchUsers(), this.props.fetchChat(userId)).then(result => {
+                Promise.all(
+                    this.props.fetchUsers(),
+                    this.props.fetchAllChat(10)).then(result => {
                     // console.log('FETCHED ALL', result)
                     this.props.navigation.navigate('Home');
                 })
@@ -105,7 +107,6 @@ const mapDispatchProps = (dispatch) => {
             return new Promise ((resolve,reject) => {
                 AsyncStorage.getItem('jwt').then(token => {
                     dispatch(fetchUsersRequest(limit, offset, token)).then((result) => {
-                        console.log('result.payload', result.payload.data.meta.success);
                         if (result.payload.data.meta.success) {
                             dispatch(fetchUsersSuccess(result.payload.data.data))
                             resolve(result.payload.data.data)
@@ -121,20 +122,23 @@ const mapDispatchProps = (dispatch) => {
             })
         },
 
-        fetchChat(userId){
+        fetchAllChat(limit){
             return new Promise((resolve, reject) => {
                 AsyncStorage.getItem('jwt').then(token => {
-                    dispatch(fetchChatRequest(userId,token)).then((result) => {
-                        // console.log('FETCH MESSAGEGS', result)
-                        if (result.success) {
-                            dispatch(fetchChatSuccess(result))
+                    dispatch(fetchAllChatRequest(limit,token)).then(( result) => {
+                        if (result.payload.data.meta.success) {
+                            // console.log('FETCH MESSAGEGS 111111');
+                            dispatch(fetchAllChatSuccess(result.payload.data.data))
                         } else {
-                            dispatch(fetchChatFailure(result))
+                            // console.log('FETCH MESSAGEGS 2222222222');
+
+                            dispatch(fetchAllChatFailure(result.payload.data.data))
                         }
                     }).catch(err => {
                         console.log('err', err)
-                        dispatch(fetchUsersFailure('Something went wrong !'))
-                        reject('Something went wrong !')
+                        dispatch(fetchAllChatFailure('Cant fetch your chat !'))
+                        reject('Cant fetch your chat !');
+
                     })
                 })
             })

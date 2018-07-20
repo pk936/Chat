@@ -21,7 +21,6 @@ export default class UserList extends React.Component {
         // console.log('users', users)
 
         let userList =  users ? users.map(user=>{
-            console.log('users', user.name)
 
             return (
 

@@ -46,15 +46,18 @@ export default class SignInForm extends React.Component {
 
         return (
             <View style={{marginTop:50}}>
-                {/*<ScrollView>*/}
-                    {/*<KeyboardAvoidingView behavior="padding" enabled>*/}
-                        <UsernameInput
-                        changeUserName={this.changeUserName}/>
-                        <PasswordInput
-                        changePassword={this.changePassword}/>
+                {/*<ScrollView*/}
+                    {/*contentContainerStyle={{flexGrow : 1, justifyContent : 'center'}}>*/}
+                    {/*<KeyboardAvoidingView enabled*/}
+                                          {/*style={{ flex: 1 }}*/}
+                                          {/*keyboardVerticalOffset={100} behavior={"padding"}*/}
+                    {/*>*/}
+                            <UsernameInput
+                            changeUserName={this.changeUserName}/>
+                            <PasswordInput
+                            changePassword={this.changePassword}/>
                     {/*</KeyboardAvoidingView>*/}
                 {/*</ScrollView>*/}
-
                 <SignInButton validateCredentials={this.validateCredentials}
                                   authenticating={authenticating}/>
             </View>

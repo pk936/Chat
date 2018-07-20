@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
+import {StyleSheet,View,ScrollView, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
 import {Container,Toast, Thumbnail,Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
 import SignInForm from "./signInForm";
@@ -14,10 +14,10 @@ const style = StyleSheet.create({
         backgroundColor: '#556edf', //'#584692'
     },
     view:{
-        // flex:1,
-        alignItems: 'center',
+        flex:1,
+        // alignItems: 'center',
         // alignContent: 'space-around',
-        // justifyContent: 'center',
+        justifyContent: 'center',
     },
     image:{
         width:50,
@@ -64,19 +64,37 @@ class SignInContainer extends React.Component {
         let {User} = this.props;
         return (
             <Container style={style.container}>
-                <Content padder contentContainerStyle={{ flexGrow: 1 }}>
-                    <Grid style={style.view}>
-                        <Col>
+                <Content  style={{flexDirection:'column'}} padder
+                          contentContainerStyle={{ flexGrow: 1,
+                              justifyContent:'center'}}>
                             {/*style={{alignItems:'center'}}*/}
+                    <ScrollView
+
+                        contentContainerStyle={{flexGrow : 1,
+                            }}
+
+                    >
+                        {/*<View stye={{*/}
+                            {/*flex: 1,*/}
+
+{/*// Set content's horizontal alignment.*/}
+                            {/*alignItems: 'center',*/}
+
+                            {/*backgroundColor: '#FFF8E1',*/}
+                        {/*}}>*/}
+                        <KeyboardAvoidingView enabled
+                                              style={{ flex: 1 }}
+                                              behavior={"position"}
+                        >
                             <Thumbnail style={style.image}
                                        source={require('../../../assets/images/ibism_logo.png')}/>
 
-                                <SignInForm
-                                    authenticating={User.loading}
-                                    onSubmitCredentials={this.onSubmitCredentials} />
-
-                        </Col>
-                    </Grid>
+                            <SignInForm
+                                authenticating={User.loading}
+                                onSubmitCredentials={this.onSubmitCredentials} />
+                            </KeyboardAvoidingView>
+                        {/*</View>*/}
+                    </ScrollView>
                 </Content>
             </Container>
         )

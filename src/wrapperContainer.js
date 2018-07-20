@@ -7,6 +7,8 @@ import WelcomeUser from "./components/home/welcomeUser";
 import {AsyncStorage} from 'react-native';
 import UserContainer from "./components/users/userContainer";
 import BottomTabNavigator from './screens/bottomTabNavigator';
+import ChatContainer from './components/messages/chatContainer';
+
 export default class WrapperContainer extends React.Component {
     constructor(props){
         super(props);
@@ -39,7 +41,7 @@ export default class WrapperContainer extends React.Component {
                 <Content>
                     <Tabs>
                         <Tab heading="Messages">
-
+                            <ChatContainer />
                         </Tab>
                         <Tab heading="Users">
                             <UserContainer />
