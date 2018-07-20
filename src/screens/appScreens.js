@@ -3,6 +3,7 @@
  */
 import {createStackNavigator} from 'react-navigation';
 import Home from '../components/home/welcomeUser';
+import ChatWindowContainer from '../components/messages/chatWindowContainer';
 import WrapperContainer from '../wrapperContainer';
 import BottomTabNavigator from './bottomTabNavigator';
 // This contains app screens after user logs in.
@@ -10,7 +11,8 @@ import BottomTabNavigator from './bottomTabNavigator';
 const AppScreens = createStackNavigator({
     // WrapperContainer:{screen:WrapperContainer},
     Home: {screen: WrapperContainer},
-    Profile:{screen:BottomTabNavigator}
+    Profile:{screen:BottomTabNavigator},
+    ChatWindow:{screen:ChatWindowContainer}
 },{
     headerMode:'none',
 }

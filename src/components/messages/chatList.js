@@ -13,6 +13,10 @@ export default class ChatList extends React.Component {
         super();
     }
 
+    chatWithUser(){
+        this.props.navigation.navigate('ChatWindow')
+    }
+
     render(){
         let {chatList} = this.props;
         let list = chatList.data.map(chat=> {
@@ -20,7 +24,7 @@ export default class ChatList extends React.Component {
             let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
             let lastMsg = chat.attributes.messages[0];
 
-            return <ListItem avatar key={chat.id}>
+            return <ListItem avatar key={chat.id} onPress={e=>this.chatWithUser(e)}>
                         <Left>
                             <Thumbnail source={uri}/>
                         </Left>

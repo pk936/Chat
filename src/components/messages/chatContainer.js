@@ -30,16 +30,15 @@ class ChatContainer extends React.Component {
     }
 
     render(){
-        let {ChatList:chatList} = this.props;
+        let {ChatList:chatList, navigation} = this.props;
 
         return chatList.data ?
-                <ChatList chatList={chatList}/>
+                <ChatList chatList={chatList} navigation={navigation}/>
             : <Text>No Conversation yet !</Text>;
     }
 }
 
 const mapStateToProps = (state) =>{
-    // console.log('STATE', state.ChatList);
     return {
         ChatList:state.Chat.chat_list
     }
