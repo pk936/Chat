@@ -38,29 +38,15 @@ class WelcomeUser extends React.Component {
                 let userId = jwtDecode(tokn).id;
                 Promise.all(
                     this.props.fetchUsers(),
-                    this.props.fetchAllChat(10)).then(result => {
+                    this.props.fetchAllChat(10)
+                ).then(result => {
                     // console.log('FETCHED ALL', result)
                     this.props.navigation.navigate('Home');
                 })
                 // this.setState({userName:jwtDecode(tokn).name})
             }
         });
-
-
-        //  setTimeout(
-        //     ()=>{
-        //         AsyncStorage.removeItem('jwt')
-        //     },3000
-        // )
     }
-
-    // componentDidUpdatte(){
-    //     AsyncStorage.getItem('jwt').then(tokn=>{
-    //         if(tokn){
-    //             this.setState({userName:jwtDecode(tokn).name})
-    //         }
-    //     })
-    // }
 
     render(){
         let {User} = this.props;
@@ -95,7 +81,6 @@ class WelcomeUser extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-    // console.log('STATE............', state)
     return {
         User:state.ActiveUser.user
     }
@@ -127,11 +112,8 @@ const mapDispatchProps = (dispatch) => {
                 AsyncStorage.getItem('jwt').then(token => {
                     dispatch(fetchAllChatRequest(limit,token)).then(( result) => {
                         if (result.payload.data.meta.success) {
-                            // console.log('FETCH MESSAGEGS 111111');
                             dispatch(fetchAllChatSuccess(result.payload.data.data))
                         } else {
-                            // console.log('FETCH MESSAGEGS 2222222222');
-
                             dispatch(fetchAllChatFailure(result.payload.data.data))
                         }
                     }).catch(err => {

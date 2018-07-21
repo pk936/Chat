@@ -8,10 +8,10 @@ import {createSwitchNavigator} from 'react-navigation';
 import WelcomeUser from '../components/home/welcomeUser'
 
 const MainNavigator = createSwitchNavigator({
-    AuthenticateUserOnAppLoad,
-    WelcomeUser,
-    App:AppScreensStack,
-    Auth:AuthScreensStack
+    AuthenticateUserOnAppLoad, // check if user is already authenticated
+    WelcomeUser, // if yes, welcome user
+    App:AppScreensStack, // show message list as default page in the app
+    Auth:AuthScreensStack // Else show login screen
 },
     {
         initialRouteName:'AuthenticateUserOnAppLoad',

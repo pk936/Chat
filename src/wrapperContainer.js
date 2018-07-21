@@ -2,12 +2,14 @@
  * Created by piyush on 7/10/18.
  */
 import React from 'react';
-import {View,Text, Container, Header, Item, Tabs, Tab,Input, Icon, Content,Footer,FooterTab,Button } from 'native-base';
+import {View,Text, Container, Header, Item,Toast, Tabs, Tab,Input, Icon, Content,Footer,FooterTab,Button } from 'native-base';
 import WelcomeUser from "./components/home/welcomeUser";
-import {AsyncStorage} from 'react-native';
+import {NetInfo, AsyncStorage, StatusBar} from 'react-native';
 import UserContainer from "./components/users/userContainer";
 import BottomTabNavigator from './screens/bottomTabNavigator';
 import ChatContainer from './components/messages/chatContainer';
+import socket from './setup/socket';
+
 
 export default class WrapperContainer extends React.Component {
     constructor(props){
@@ -18,14 +20,35 @@ export default class WrapperContainer extends React.Component {
     }
 
     componentDidMount(){
-        let token = AsyncStorage.getItem('jwt').then(userAuthenticate=>{
-            if(userAuthenticate){
-                this.setState({isUserAuthorized:true})
-                // this.props.navigation.navigate('HomeScreen')
-            }
-        }).catch(res=>{
-            this.props.navigation.navigate('Auth');
+        // let isUserOffline = false;
+        socket.on('disconnect', ()=>{
+            // console.log('DISCONNECTED');
+            // isUserOffline='Yes';
+            Toast.show({
+                text:'Slow internet connectivity!',
+            })
         })
+
+        // socket.on('connect', ()=>{
+        //     if(isUserOffline === 'Yes') {
+        //         console.log('CONNECTED');
+        //         Toast.show({
+        //             text: 'Connected!'
+        //         })
+        //     }
+        //
+        //     isUserOffline = false;
+        // })
+
+        NetInfo.isConnected.addEventListener('connectionChange', this.connectionChanged)
+
+        // Hide status bar from all over the app
+        StatusBar.setHidden(true)
+    }
+
+    connectionChanged(isConnected){
+        let text = isConnected ? 'We are back !' : 'We lost you !';
+        Toast.show({text});
     }
 
     render(){

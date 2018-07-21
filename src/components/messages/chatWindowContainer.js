@@ -13,10 +13,6 @@ class ChatWindowContainer extends React.Component {
         super();
     }
 
-    chatWithUser(){
-        this.props.navigation.navigate('ChatWindow')
-    }
-
     render(){
         return <Container>
             <Header/>
