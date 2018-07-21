@@ -13,9 +13,9 @@ export default class ChatList extends React.Component {
         super();
     }
 
-    chatWithUser = (userId,name,image) => {
+    chatWithUser = (recipientId,name,image) => {
         this.props.navigation.navigate('ChatWindow', {
-            userId,name,image
+            recipientId,name,image
         })
     }
 

@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d2aad09-43a1-4213-a0a3-a14550095294" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/messages/chatActions.js" afterPath="$PROJECT_DIR$/src/components/messages/chatActions.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/messages/chatWindow.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/messages/chatList.js" afterPath="$PROJECT_DIR$/src/components/messages/chatList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/messages/chatWindowContainer.js" afterPath="$PROJECT_DIR$/src/components/messages/chatWindowContainer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -18,18 +20,6 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="wrapperContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/wrapperContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
-              <folding>
-                <element signature="e#41#67#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="signInContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/auth/signInContainer.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -55,8 +45,8 @@
       <file leaf-file-name="chatList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="270">
+              <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
               <folding>
                 <element signature="e#41#67#0" expanded="true" />
               </folding>
@@ -64,22 +54,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatWindowContainer.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chatWindowContainer.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/messages/chatWindowContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="71" column="82" lean-forward="false" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+            <state relative-caret-position="494">
+              <caret line="62" column="61" lean-forward="false" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
               <folding>
                 <element signature="e#41#67#0" expanded="true" />
-                <marker date="1532192004235" expanded="true" signature="2455:4461" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="2544:3346" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="2576:3211" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="2610:2690" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="2724:3178" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="2762:3143" ph="..." />
-                <marker date="1532192004235" expanded="false" signature="2810:2823" ph="..." />
-                <marker date="1532192004235" expanded="false" signature="3033:3049" ph="..." />
-                <marker date="1532192004235" expanded="true" signature="3244:3322" ph="..." />
+                <marker date="1532194673873" expanded="true" signature="2135:3226" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="chatWindow.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/components/messages/chatWindow.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="576">
+              <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+              <folding>
+                <element signature="e#41#67#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -138,7 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>default</find>
       <find>default_</find>
       <find>default_pr</find>
       <find>chatReducer</find>
@@ -168,6 +161,7 @@
       <find>initialRouteName</find>
       <find>headerMode</find>
       <find>fetchAllChat</find>
+      <find>userId</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,7 +207,6 @@
         <option value="$PROJECT_DIR$/src/components/users/userList.js" />
         <option value="$PROJECT_DIR$/src/components/auth/signInContainer.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatContainer.js" />
-        <option value="$PROJECT_DIR$/src/components/messages/chatWindow.js" />
         <option value="$PROJECT_DIR$/src/constants/constants.js" />
         <option value="$PROJECT_DIR$/src/setup/socket.js" />
         <option value="$PROJECT_DIR$/src/components/home/welcomeUser.js" />
@@ -221,9 +214,10 @@
         <option value="$PROJECT_DIR$/src/wrapperContainer.js" />
         <option value="$PROJECT_DIR$/src/screens/mainNavigator.js" />
         <option value="$PROJECT_DIR$/src/screens/appScreens.js" />
-        <option value="$PROJECT_DIR$/src/components/messages/chatList.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatActions.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatWindowContainer.js" />
+        <option value="$PROJECT_DIR$/src/components/messages/chatList.js" />
+        <option value="$PROJECT_DIR$/src/components/messages/chatWindow.js" />
       </list>
     </option>
   </component>
@@ -658,12 +652,12 @@
       <workItem from="1532009979098" duration="612000" />
       <workItem from="1532011261950" duration="9515000" />
       <workItem from="1532101679796" duration="604000" />
-      <workItem from="1532103027394" duration="32002000" />
+      <workItem from="1532103027394" duration="34696000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="177372000" />
+    <option name="totallyTimeSpent" value="180066000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,7 +680,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20064725" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3883495" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -717,13 +711,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/expo/src/KeepAwake.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="25" column="28" lean-forward="false" selection-start-line="25" selection-start-column="20" selection-end-line="25" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
@@ -770,13 +757,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="133">
           <caret line="8" column="30" lean-forward="true" selection-start-line="8" selection-start-column="30" selection-end-line="8" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1009,7 +989,7 @@
         <state relative-caret-position="308">
           <caret line="49" column="8" lean-forward="false" selection-start-line="49" selection-start-column="8" selection-end-line="49" selection-end-column="8" />
           <folding>
-            <element signature="e#41#67#0" expanded="true" />
+            <element signature="e#41#67#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1056,16 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="17" column="29" lean-forward="true" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding>
-            <element signature="e#41#67#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/users/userContainer.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="484">
@@ -1092,21 +1062,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="18" column="25" lean-forward="false" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/messages/chatWindowContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="71" column="82" lean-forward="false" selection-start-line="71" selection-start-column="82" selection-end-line="71" selection-end-column="82" />
+        <state relative-caret-position="494">
+          <caret line="62" column="61" lean-forward="false" selection-start-line="62" selection-start-column="61" selection-end-line="62" selection-end-column="61" />
           <folding>
             <element signature="e#41#67#0" expanded="true" />
-            <marker date="1532192004235" expanded="true" signature="2455:4461" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="2544:3346" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="2576:3211" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="2610:2690" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="2724:3178" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="2762:3143" ph="..." />
-            <marker date="1532192004235" expanded="false" signature="2810:2823" ph="..." />
-            <marker date="1532192004235" expanded="false" signature="3033:3049" ph="..." />
-            <marker date="1532192004235" expanded="true" signature="3244:3322" ph="..." />
+            <marker date="1532194673873" expanded="true" signature="2135:3226" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="10" lean-forward="true" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+          <folding>
+            <element signature="e#41#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/messages/chatWindow.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="44" column="19" lean-forward="false" selection-start-line="44" selection-start-column="19" selection-end-line="44" selection-end-column="19" />
+          <folding>
+            <element signature="e#41#67#0" expanded="true" />
           </folding>
         </state>
       </provider>
