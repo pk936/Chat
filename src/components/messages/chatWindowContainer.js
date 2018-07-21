@@ -28,17 +28,23 @@ import {AsyncStorage} from 'react-native';
 import moment from 'moment';
 import {GiftedChat} from 'react-native-gifted-chat';
 import {fetchChatRequest, fetchChatSuccess, fetchChatFailure} from '../messages/chatActions';
+import jwtDecode from'jwt-decode';
 
 class ChatWindowContainer extends React.Component {
     constructor(props) {
         super();
         // this.state
+        this.loggedInUserId = null;
     }
 
     componentDidMount() {
         let {navigation} = this.props;
         let userId = navigation.getParam('userId');
-        this.props.fetchChat(userId);
+        // fetch user id from redux.. this is temporary
+        AsyncStorage.getItem('jwt').then(tkn=>{
+            this.loggedInUserId = jwtDecode(tkn).id;
+            this.props.fetchChat(userId);
+        })
     }
 
     render() {
@@ -48,39 +54,35 @@ class ChatWindowContainer extends React.Component {
         let name = navigation.getParam('name');
         let image = navigation.getParam('image');
 
-        console.log('this.props.ActiveChat.data', this.props.ActiveChat.data);
+        // console.log('this.props.ActiveChat.data', this.props.ActiveChat.data);
 
         if (this.props.ActiveChat.data) {
+            let messages = [{
+                _id: Math.random(),
+                text: `You are now connected with ${name}`,
+                createdAt: new Date(),
+                system:true
+            }, ...this.props.ActiveChat.data.messages]
+
             return <Container>
-                <Header>
-                    <Left>
-                    </Left>
-                    <Body>
-                    <Grid>
-                        <Col style={{width: '2'}}>
-                            <Thumbnail small source={image}/>
-                        </Col>
-                        <Col>
-                            <Text style={{color: '#fff'}}>{name}</Text>
-                        </Col>
-                    </Grid>
-                    </Body>
-                </Header>
-                <Content contentContainerStyle={{
-                    flexGrow: 1,
-                }}>
-                    <GiftedChat messages={[{
-                        _id: 1,
-                        text: 'This is a system message',
-                        createdAt: new Date(Date.UTC(2016, 5, 11, 17, 20, 0)),
-                        system: true,
-                        // Any additional custom parameters are passed through
-                    }]}/>
-                </Content>
-            </Container>
+                    <Header>
+                        <Left>
+                            <Icon></Icon>
+                        </Left>
+                        <Body style={{alignItems:'left', flexDirection:'flex-start'}}>
+                                <Thumbnail small source={image} />
+                                <Text style={{color:'#fff'}}>{name}</Text>
+                        </Body>
+                    </Header>
+                    <Content contentContainerStyle={{flexGrow:1}}>
+                        <GiftedChat messages={messages}
+                                    user={{_id:this.loggedInUserId}}/>
+                    </Content>
+                </Container>
         } else {
             return <Spinner />
         }
+
 
         // return <Container>
         //             <Header>
@@ -107,7 +109,8 @@ class ChatWindowContainer extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        ActiveChat: state.Chat.chat
+        ActiveChat: state.Chat.chat,
+
     }
 }
 
