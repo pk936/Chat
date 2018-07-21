@@ -7,6 +7,8 @@ import AuthScreensStack from '../screens/authScreens';
 import {createSwitchNavigator} from 'react-navigation';
 import WelcomeUser from '../components/home/welcomeUser'
 
+// createSwitchNavigator does not show back button
+
 const MainNavigator = createSwitchNavigator({
     AuthenticateUserOnAppLoad, // check if user is already authenticated
     WelcomeUser, // if yes, welcome user

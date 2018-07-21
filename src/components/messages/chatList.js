@@ -13,29 +13,31 @@ export default class ChatList extends React.Component {
         super();
     }
 
-    chatWithUser(){
-        this.props.navigation.navigate('ChatWindow')
+    chatWithUser = (userId,name,image) => {
+        this.props.navigation.navigate('ChatWindow', {
+            userId,name,image
+        })
     }
 
     render(){
         let {chatList} = this.props;
         let list = chatList.data.map(chat=> {
-            let recipient = chat.attributes.recipient[0];
-            let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
-            let lastMsg = chat.attributes.messages[0];
+        let recipient = chat.attributes.recipient[0];
+        let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
+        let lastMsg = chat.attributes.messages[0];
 
-            return <ListItem avatar key={chat.id} onPress={e=>this.chatWithUser(e)}>
-                        <Left>
-                            <Thumbnail source={uri}/>
-                        </Left>
-                        <Body>
-                            <Text>{recipient.recipientName}</Text>
-                            <Text note>{lastMsg.message}</Text>
-                        </Body>
-                        <Right>
-                            <Text>{moment(lastMsg.timestamp).fromNow()}</Text>
-                        </Right>
-                    </ListItem>
+            return <ListItem avatar key={chat.id} onPress={()=>this.chatWithUser(lastMsg.author,recipient.recipientName,uri)}>
+                    <Left>
+                        <Thumbnail source={uri}/>
+                    </Left>
+                    <Body>
+                        <Text>{recipient.recipientName}</Text>
+                        <Text note>{lastMsg.message}</Text>
+                    </Body>
+                    <Right>
+                        <Text>{moment(lastMsg.timestamp).fromNow()}</Text>
+                    </Right>
+                </ListItem>
         })
 
         return <List>{list}</List>;

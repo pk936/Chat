@@ -11,7 +11,7 @@ const {
 } = require('./keyMirror').default;
 
 const INITIAL_STATE = {
-    chat:{data:null,loading:false, error:false},
+    chat:{data:null},
     chat_list:{data:null,loading:false, error:false}
 }
 

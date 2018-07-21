@@ -10,6 +10,7 @@ const AuthScreen = createStackNavigator({
     SignInContainer: {screen: SignInContainer}
 },{
     headerMode:'none',
-});
+}
+);
 
 export default AuthScreen;

@@ -13,6 +13,7 @@ import axios from'axios';
 import APP_URL from '../../constants/constants';
 import jwtDecode from 'jwt-decode';
 import {AsyncStorage} from 'react-native';
+const anonymousUser = require('../../../assets/images/default_profile_img.jpeg');
 
 export const fetchChatRequest = (id,token) => {
 
@@ -30,10 +31,27 @@ export const fetchChatRequest = (id,token) => {
 }
 
 export const fetchChatSuccess = (payload) => {
-    // console.log('chat success',payload)
+    console.log('chat success',payload)
+
+    /// converting data as gifted chat requires
+    let message = payload.attributes.messages;
+    let recipient = payload.attributes.recipient[0];
+    let data = payload.attributes.messages.map(msg=>{
+        return {
+            _id: 1,
+            text: msg.message,
+            createdAt: msg.timestamp,
+            user: {
+                _id: msg.author,
+                name: 'Sameer',
+                avatar: anonymousUser,
+            }
+        }
+    })
+
     return {
         type: FETCH_CHAT_SUCCESS,
-        payload
+        payload:data
     }
 }
 

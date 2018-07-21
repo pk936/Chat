@@ -52,6 +52,7 @@ export default class WrapperContainer extends React.Component {
     }
 
     render(){
+        let {navigation} = this.props;
         return (
             <Container>
                 <Header searchBar rounded>
@@ -64,7 +65,7 @@ export default class WrapperContainer extends React.Component {
                 <Content>
                     <Tabs>
                         <Tab heading="Messages">
-                            <ChatContainer />
+                            <ChatContainer navigation={navigation}/>
                         </Tab>
                         <Tab heading="Users">
                             <UserContainer />
