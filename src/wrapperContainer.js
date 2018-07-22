@@ -9,9 +9,11 @@ import UserContainer from "./components/users/userContainer";
 import BottomTabNavigator from './screens/bottomTabNavigator';
 import ChatContainer from './components/messages/chatContainer';
 import socket from './setup/socket';
+import {appendChatSuccess, updateAllChatSuccess} from './components/messages/chatActions';
+import {connect} from 'react-redux';
+const anonymousUser = require('../assets/images/default_profile_img.jpeg');
 
-
-export default class WrapperContainer extends React.Component {
+class WrapperContainer extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -26,6 +28,7 @@ export default class WrapperContainer extends React.Component {
             // isUserOffline='Yes';
             Toast.show({
                 text:'Slow internet connectivity!',
+                duration:20000
             })
         })
 
@@ -44,6 +47,46 @@ export default class WrapperContainer extends React.Component {
 
         // Hide status bar from all over the app
         StatusBar.setHidden(true)
+
+        socket.on('chats', (chat)=>{
+            // console.log('RECIEVING', chat, this.props.ActiveChat);
+
+            if(this.props.ActiveChat.data) { // if chat window is opened
+                let msg = {
+                    _id: chat.timestamp,
+                    text: chat.message,
+                    createdAt: chat.timestamp,
+                    user: {
+                        _id: chat.author,
+                        name: chat.recipientName,
+                        avatar: anonymousUser, // no image is in socket yet !
+                    },
+                }
+
+                this.props.appendChatSuccess(msg)
+            }else{
+                let msg = {
+                    attributes:{
+                        accountId:'ABC',
+                        members:[chat.author, chat.recipientId],
+                        messages:{
+                            author:chat.author,
+                            message:chat.message,
+                            timestamp:chat.timestamp
+                        },
+                        recipient:{
+                            avatarThumb:anonymousUser,
+                            recipientId:chat.recipientId,
+                            recipientName:chat.recipientName
+                        },
+                    },
+                    id:chat.conversation_id,
+                    type:'conversations'
+                }
+
+                this.props.updateAllChatSuccess(msg)
+            }
+        })
     }
 
     connectionChanged(isConnected){
@@ -90,3 +133,26 @@ export default class WrapperContainer extends React.Component {
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    // console.log('STATE', state.Chat.chat)
+    return {
+        ActiveChat: state.Chat.chat
+
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        appendChatSuccess(msg){
+            dispatch(appendChatSuccess(msg))
+        },
+
+        updateAllChatSuccess(msg){
+            dispatch(updateAllChatSuccess(msg))
+        },
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WrapperContainer);

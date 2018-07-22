@@ -21,23 +21,26 @@ export default class ChatList extends React.Component {
 
     render(){
         let {chatList} = this.props;
-        let list = chatList.data.map(chat=> {
-        let recipient = chat.attributes.recipient[0];
-        let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
-        let lastMsg = chat.attributes.messages[0];
+        // let recipient,uri,lastMsg;
 
-            return <ListItem avatar key={chat.id} onPress={()=>this.chatWithUser(lastMsg.author,recipient.recipientName,uri)}>
-                    <Left>
-                        <Thumbnail source={uri}/>
-                    </Left>
-                    <Body>
-                        <Text>{recipient.recipientName}</Text>
-                        <Text note>{lastMsg.message}</Text>
-                    </Body>
-                    <Right>
-                        <Text>{moment(lastMsg.timestamp).fromNow()}</Text>
-                    </Right>
-                </ListItem>
+        let list = chatList.data.map(chat=> {
+                    let recipient = chat.attributes.recipient[0];
+                    let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
+                    let lastMsg = chat.attributes.messages[0];
+
+                    console.log('recipient', recipient.recipientId)
+                    return <ListItem avatar key={chat.id} onPress={()=>this.chatWithUser(recipient.recipientId,recipient.recipientName,uri)}>
+                            <Left>
+                                <Thumbnail source={uri}/>
+                            </Left>
+                            <Body>
+                                <Text>{recipient.recipientName}</Text>
+                                <Text note>{lastMsg.message}</Text>
+                            </Body>
+                            <Right>
+                                <Text>{moment(lastMsg.timestamp).fromNow()}</Text>
+                            </Right>
+                        </ListItem>
         })
 
         return <List>{list}</List>;

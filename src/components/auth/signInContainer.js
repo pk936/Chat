@@ -42,7 +42,6 @@ class SignInContainer extends React.Component {
                 buttonText: 'okay'
             })
         }else {
-            // this.setState({authenticating:true});
 
             this.props.onSubmitCredentials(credentials).then(result => {
                 // result contains token, exp etc.
@@ -50,7 +49,6 @@ class SignInContainer extends React.Component {
                     'userName':result.name
                 });
             }).catch(err => {
-                // this.setState({error: true, authenticating: false})
                 Toast.show({
                     text: err,
                     buttonText: 'okay'
@@ -68,7 +66,7 @@ class SignInContainer extends React.Component {
                           contentContainerStyle={{ flexGrow: 1,
                               justifyContent:'center'}}>
                             {/*style={{alignItems:'center'}}*/}
-                    <ScrollView
+                    <View
 
                         contentContainerStyle={{flexGrow : 1,
                             }}
@@ -82,6 +80,7 @@ class SignInContainer extends React.Component {
 
                             {/*backgroundColor: '#FFF8E1',*/}
                         {/*}}>*/}
+
                         <KeyboardAvoidingView enabled
                                               style={{ flex: 1 }}
                                               behavior={"position"}
@@ -94,7 +93,7 @@ class SignInContainer extends React.Component {
                                 onSubmitCredentials={this.onSubmitCredentials} />
                             </KeyboardAvoidingView>
                         {/*</View>*/}
-                    </ScrollView>
+                    </View>
                 </Content>
             </Container>
         )
