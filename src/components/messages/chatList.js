@@ -13,7 +13,7 @@ export default class ChatList extends React.Component {
         super();
     }
 
-    chatWithUser = (recipientId,name,image) => {
+    startConversation = (recipientId,name,image) => {
         this.props.navigation.navigate('ChatWindow', {
             recipientId,name,image
         })
@@ -21,24 +21,22 @@ export default class ChatList extends React.Component {
 
     render(){
         let {chatList} = this.props;
-        // let recipient,uri,lastMsg;
 
         let list = chatList.data.map(chat=> {
                     let recipient = chat.attributes.recipient[0];
                     let uri = recipient.avatarThumb ? {uri: recipient.avatarThumb} : anonymousUser;
                     let lastMsg = chat.attributes.messages[0];
 
-                    console.log('recipient', recipient.recipientId)
-                    return <ListItem avatar key={chat.id} onPress={()=>this.chatWithUser(recipient.recipientId,recipient.recipientName,uri)}>
+            return <ListItem avatar key={chat.id} onPress={()=>this.startConversation(recipient.recipientId,recipient.recipientName,uri)}>
                             <Left>
                                 <Thumbnail source={uri}/>
                             </Left>
                             <Body>
                                 <Text>{recipient.recipientName}</Text>
-                                <Text note>{lastMsg.message}</Text>
+                                <Text note>{lastMsg ? lastMsg.message : ''}</Text>
                             </Body>
                             <Right>
-                                <Text>{moment(lastMsg.timestamp).fromNow()}</Text>
+                                <Text>{lastMsg ? moment(lastMsg.timestamp).fromNow() : ''}</Text>
                             </Right>
                         </ListItem>
         })
@@ -46,17 +44,3 @@ export default class ChatList extends React.Component {
         return <List>{list}</List>;
     }
 }
-
-// const mapStateToProps = (state) => {
-//     return {
-//         Users:state.Users.users
-//     }
-// }
-//
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//
-//     }
-// }
-//
-// export default connect(mapStateToProps,mapDispatchToProps)(ChatList);

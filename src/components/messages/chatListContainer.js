@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet,View, Image, AsyncStorage} from 'react-native';
 import {Grid, Row, Col} from 'react-native-easy-grid';
-import {Container,Toast, Thumbnail,List,ListItem,Left,Right, Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
+import {Container,Toast, Spinner,Thumbnail,List,ListItem,Left,Right, Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
 import moment from 'moment';
 import ChatList from './chatList';
 
@@ -24,7 +24,7 @@ const style = StyleSheet.create({
 })
 
 
-class ChatContainer extends React.Component {
+class ChatListContainer extends React.Component {
     constructor(props){
         super(props);
     }
@@ -32,9 +32,11 @@ class ChatContainer extends React.Component {
     render(){
         let {ChatList:chatList, navigation} = this.props;
 
+        let data = chatList.loader ? <Spinner /> : <Text>No Conversation yet !</Text>;
+
         return chatList.data ?
                 <ChatList chatList={chatList} navigation={navigation}/>
-            : <Text>No Conversation yet !</Text>;
+            : data;
     }
 }
 
@@ -65,4 +67,4 @@ const mapDispatchToProps = (dispatch) =>{
     }
 }
 
-export default connect(mapStateToProps)(ChatContainer);
+export default connect(mapStateToProps)(ChatListContainer);

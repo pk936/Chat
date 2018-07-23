@@ -7,7 +7,7 @@ import WelcomeUser from "./components/home/welcomeUser";
 import {NetInfo, AsyncStorage, StatusBar} from 'react-native';
 import UserContainer from "./components/users/userContainer";
 import BottomTabNavigator from './screens/bottomTabNavigator';
-import ChatContainer from './components/messages/chatContainer';
+import ChatListContainer from './components/messages/chatListContainer';
 import socket from './setup/socket';
 import {appendChatSuccess, updateAllChatSuccess} from './components/messages/chatActions';
 import {connect} from 'react-redux';
@@ -21,14 +21,20 @@ class WrapperContainer extends React.Component {
         }
     }
 
+    // componentDidUpdate(){
+    //     NetInfo.isConnected.addEventListener('connectionChange', this.connectionChanged)
+    //
+    // }
+
     componentDidMount(){
         // let isUserOffline = false;
         socket.on('disconnect', ()=>{
             // console.log('DISCONNECTED');
             // isUserOffline='Yes';
             Toast.show({
-                text:'Slow internet connectivity!',
-                duration:20000
+                text:'No connection',
+                duration:20000,
+                position: "top"
             })
         })
 
@@ -51,6 +57,25 @@ class WrapperContainer extends React.Component {
         socket.on('chats', (chat)=>{
             // console.log('RECIEVING', chat, this.props.ActiveChat);
 
+            let msgToAppendOrUpdateInList = {
+                attributes:{
+                    accountId:'ABC',
+                    members:[chat.author, chat.recipientId],
+                    messages:[{
+                        author:chat.author,
+                        message:chat.message,
+                        timestamp:chat.timestamp
+                    }],
+                    recipient:[{
+                        avatarThumb:null,
+                        recipientId:chat.recipientId,
+                        recipientName:chat.recipientName
+                    }],
+                },
+                id:chat.conversation_id,
+                type:'conversations'
+            }
+
             if(this.props.ActiveChat.data) { // if chat window is opened
                 let msg = {
                     _id: chat.timestamp,
@@ -63,28 +88,9 @@ class WrapperContainer extends React.Component {
                     },
                 }
 
-                this.props.appendChatSuccess(msg)
+                this.props.appendChatSuccess(msg,msgToAppendOrUpdateInList)
             }else{
-                let msg = {
-                    attributes:{
-                        accountId:'ABC',
-                        members:[chat.author, chat.recipientId],
-                        messages:{
-                            author:chat.author,
-                            message:chat.message,
-                            timestamp:chat.timestamp
-                        },
-                        recipient:{
-                            avatarThumb:anonymousUser,
-                            recipientId:chat.recipientId,
-                            recipientName:chat.recipientName
-                        },
-                    },
-                    id:chat.conversation_id,
-                    type:'conversations'
-                }
-
-                this.props.updateAllChatSuccess(msg)
+                this.props.updateAllChatSuccess(msgToAppendOrUpdateInList)
             }
         })
     }
@@ -94,6 +100,11 @@ class WrapperContainer extends React.Component {
         Toast.show({text});
     }
 
+    switchToSearchPage = () => {
+        // this.props.navigation.navigate('SearchResult');
+    }
+
+
     render(){
         let {navigation} = this.props;
         return (
@@ -101,17 +112,17 @@ class WrapperContainer extends React.Component {
                 <Header searchBar rounded>
                     <Item>
                         <Icon name="ios-search" />
-                        <Input placeholder="search"/>
+                        <Input placeholder="search" onFocus={this.switchToSearchPage} />
                         <Icon name="ios-people" />
                     </Item>
                 </Header>
                 <Content>
                     <Tabs>
                         <Tab heading="Messages">
-                            <ChatContainer navigation={navigation}/>
+                            <ChatListContainer navigation={navigation}/>
                         </Tab>
                         <Tab heading="Users">
-                            <UserContainer />
+                            <UserContainer navigation={navigation}/>
                         </Tab>
                     </Tabs>
                 </Content>
@@ -144,8 +155,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        appendChatSuccess(msg){
+        appendChatSuccess(msg, msgToAppendOrUpdateInList){
             dispatch(appendChatSuccess(msg))
+            dispatch(updateAllChatSuccess(msgToAppendOrUpdateInList))
         },
 
         updateAllChatSuccess(msg){

@@ -11,7 +11,12 @@ import {
     Content,
     Body,
     View,
-    Text
+    Text,
+    Title,
+    Left,
+    Right,
+    Button,
+    Icon
 } from 'native-base';
 import {connect} from 'react-redux';
 import {AsyncStorage} from 'react-native';
@@ -53,12 +58,17 @@ class ChatWindowContainer extends React.Component {
         // console.log('image', image);
         return <Container>
                     <Header>
+                        <Left>
+                            <Button transparent>
+                                <Icon name='arrow-back' />
+                            </Button>
+                        </Left>
                         <Body>
-                            <View>
-                                <Thumbnail small source={image} />
-                                <Text style={{color:'#fff'}}>{name}</Text>
-                            </View>
+                            <Title>{name}</Title>
                         </Body>
+                        <Right>
+                            <Thumbnail small source={image} />
+                        </Right>
                     </Header>
                     <Content contentContainerStyle={{flexGrow:1}}>
                         <ChatWindow data={ActiveChat.data}

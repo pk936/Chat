@@ -51,7 +51,7 @@ class WelcomeUser extends React.Component {
     render(){
         let {User} = this.props;
         // let {navigation} = this.props;
-        // console.log('ActiveUser...', User);
+        // console.log('LoggedInUser...', User);
 
         let userName = User.data ? User.data.name : '';
 
@@ -82,7 +82,7 @@ class WelcomeUser extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        User:state.ActiveUser.user
+        User:state.LoggedInUser.loggedInUser
     }
 }
 

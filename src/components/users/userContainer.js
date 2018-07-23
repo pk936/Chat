@@ -37,9 +37,9 @@ class UserContainer extends React.Component {
 
     render(){
         // console.log('.',this.props);
-        let {Users} = this.props;
+        let {Users, navigation} = this.props;
         return (
-            <UserList users={Users}/>
+            <UserList users={Users} navigation={navigation} />
         )
     }
 }

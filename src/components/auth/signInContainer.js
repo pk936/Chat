@@ -103,7 +103,7 @@ class SignInContainer extends React.Component {
 const mapStateToProps = (state) =>{
     // console.log('STATE', state);
     return {
-        User:state.ActiveUser.user
+        User:state.LoggedInUser.loggedInUser
     }
 }
 

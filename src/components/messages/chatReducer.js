@@ -53,8 +53,11 @@ export default chatReducer = (state=INITIAL_STATE, action) => {
             if(state.chat_list.data){
                 data = [...state.chat_list.data];
                 let chat = data.find(chat=>chat.id === action.payload.id);
+                // console.log('chat',chat, action.payload);
                 if(chat){
                     chat.attributes.messages = [action.payload.attributes.messages, ...chat.attributes.messages]
+                }else{
+                    data.unshift(action.payload)
                 }
             }
 

@@ -12,7 +12,7 @@ const appUrl = {
     GOOGLE_URL               : API_BASE_URL + 'googlelogin',
     TOKEN_VERIFY_URL         : API_BASE_URL + 'verification',
     TOKEN_RESEND_URL         : API_BASE_URL + 'resend-verification-token',
-    USER_DETAILS             : API_BASE_URL + 'user/',
+    USER_DETAILS             : API_BASE_URL + 'user',
     FETCH_USERS              : API_BASE_URL + 'users',
     FETCH_TEAMS              : API_BASE_URL + 'teams',
     PEOPLE_URL               : API_BASE_URL + 'users',

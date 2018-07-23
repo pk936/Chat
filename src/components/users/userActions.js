@@ -12,7 +12,7 @@ import jwtDecode from 'jwt-decode';
 import {AsyncStorage} from 'react-native';
 // import HeadersBearer from '../../setup/headerBearer';
 
-export function fetchUsersRequest(limit=10,offset=0, token) {
+export function fetchUsersRequest(limit=15,offset=0, token) {
 
     const HeadersBearer = {'Authorization':'Bearer ' + token}
 
