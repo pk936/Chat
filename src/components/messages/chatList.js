@@ -62,7 +62,7 @@ export default class ChatList extends React.Component {
         // contentContainerStyle is also added so that scolling cabe done in flatlist
         let {chatList} = this.props;
         let {refreshing,loading} = this.state;
-        console.log('refreshing', refreshing)
+        // console.log('refreshing', refreshing)
         let list = <FlatList keyExtractor={chat=>chat.id}
                              refreshing={refreshing}
                              onRefresh={this.onRefresh}

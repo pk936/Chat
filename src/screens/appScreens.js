@@ -12,7 +12,7 @@ import {Button} from 'react-native';
 const AppScreens = createStackNavigator({
     // WrapperContainer:{screen:WrapperContainer},
     Home: {screen: WrapperContainer},
-    Profile:{screen:BottomTabNavigator},
+    // Profile:{screen:BottomTabNavigator},
     ChatWindow:{screen:ChatWindowContainer}
 },{
     headerMode:'none',

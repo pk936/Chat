@@ -58,18 +58,21 @@ export default chatReducer = (state=INITIAL_STATE, action) => {
 
         case UPDATE_ALL_CHAT_SUCCESS:
             data = null;
+            let meta;
             if(state.chat_list.data){
-                data = [...state.chat_list.data];
+                data = [...state.chat_list.data.data];
+                meta = {...state.chat_list.data.meta};
                 let chat = data.find(chat=>chat.id === action.payload.id);
-                // console.log('chat',chat, action.payload);
-                if(chat){
-                    chat.attributes.messages = [action.payload.attributes.messages, ...chat.attributes.messages]
-                }else{
+                if(chat){ // updating chat
+                    chat.attributes.messages = [...action.payload.attributes.messages, ...chat.attributes.messages]
+                }else{ // adding chat
                     data.unshift(action.payload)
+                    meta.totalCount += 1;
                 }
             }
 
-            return {...state, chat_list:{data, loading:false,error:false}}
+            // console.log(JSON.stringify(data))
+            return {...state, chat_list:{data:{data, meta}, loading:false,error:false}}
 
         default: return state;
     }
