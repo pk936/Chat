@@ -7,7 +7,7 @@ import { Container, Header,List, ListItem,Thumbnail, Title, Content, Footer, Foo
 import {connect} from 'react-redux';
 const anonymousUser = require('../../../assets/images/default_profile_img.jpeg');
 
-export default class UserList extends React.Component {
+export default class TeamList extends React.Component {
     constructor(props){
         super();
     }
@@ -19,24 +19,25 @@ export default class UserList extends React.Component {
     }
 
     render(){
-        let {users} = this.props;
-        let userList =  users ? users.map(user=>{
-            let uri = user.attributes.avatar_thumb ? {uri: user.attributes.avatar_thumb} : anonymousUser;
+        let {teams} = this.props;
+        console.log('...', Object.keys(teams.data));
+        let teamList =  teams ? teams.data.map(team=>{
+            let uri = team.attributes.avatar_thumb ? {uri: team.attributes.avatar_thumb} : anonymousUser;
             return (
-                <ListItem avatar key={user.id} onPress={()=>this.startConversation(user.id,user.attributes.name, uri)}>
+                <ListItem avatar key={team.id} onPress={()=>this.startConversation(team.id,team.attributes.name, uri)}>
                     <Left>
                         <Thumbnail small source={uri} />
                     </Left>
                     <Body>
-                    <Text style={{fontSize:12}}>{user.attributes.name}</Text>
-                    <Text note  style={{fontSize:12}}>{user.relationships.role.data.name}</Text>
+                    <Text style={{fontSize:12}}>{team.attributes.name}</Text>
+                    <Text note  style={{fontSize:12}}>{'123'}</Text>
                     </Body>
                 </ListItem>
             )
         }) : <Text>Loading</Text>;
 
         return (
-            <List>{userList}</List>
+            <List>{teamList}</List>
         )
     }
 }

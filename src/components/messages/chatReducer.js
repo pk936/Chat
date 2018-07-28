@@ -17,8 +17,10 @@ const {
 
 const INITIAL_STATE = {
     chat:{data:null},
-    chat_list:{data:null,loading:false, error:false}
+    chat_list:{data:null}
 }
+
+let data;
 
 export default chatReducer = (state=INITIAL_STATE, action) => {
     // console.log('action.payload.....',action.payload)
@@ -37,19 +39,25 @@ export default chatReducer = (state=INITIAL_STATE, action) => {
         //     return {...state, chat:{data:null, loading:true,error:false}}
         case APPEND_CHAT_SUCCESS:
             return {...state, chat:{data:{messages:[action.payload,...state.chat.data.messages]}, loading:false,error:false}}
-
         case APPEND_CHAT_FAILURE:
             return {...state, chat:{data:state.chat.data, loading:false,error:action.payload}}
 
+
         case FETCH_ALL_CHAT_REQUEST:
-            return {...state, chat_list:{data:null, loading:true,error:false}}
+            return {...state, chat_list:{data:state.chat_list.data, loading:true,error:false}}
         case FETCH_ALL_CHAT_SUCCESS:
-            return {...state, chat_list:{data:action.payload, loading:false,error:false}}
+            data = action.payload.data;
+            if(state.chat_list.data){
+                data = [...state.chat_list.data.data,...data]
+            }
+
+            return {...state, chat_list:{data:{data, meta:action.payload.meta}, loading:false,error:false}}
         case FETCH_ALL_CHAT_FAILURE:
-            return {...state, chat_list:{data:null, loading:false,error:action.payload}}
+            return {...state, chat_list:{data:state.chat_list.data, loading:false,error:action.payload}}
+
 
         case UPDATE_ALL_CHAT_SUCCESS:
-            let data = null;
+            data = null;
             if(state.chat_list.data){
                 data = [...state.chat_list.data];
                 let chat = data.find(chat=>chat.id === action.payload.id);

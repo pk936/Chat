@@ -8,6 +8,8 @@ import {StyleSheet, Image, AsyncStorage} from 'react-native';
 import {View,Grid, Row, Spinner, Container, Header, List, ListItem,Thumbnail, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text } from 'native-base';
 import {fetchAllChatRequest,fetchAllChatSuccess,fetchAllChatFailure} from '../messages/chatActions';
 import {fetchUsersRequest,fetchUsersSuccess,fetchUsersFailure} from '../users/userActions';
+import {fetchUserRequest,fetchUserSuccess,fetchUserFailure} from '../profile/profileActions';
+import {fetchTeamsRequest,fetchTeamsSuccess,fetchTeamsFailure} from '../teams/teamActions';
 
 import jwtDecode from 'jwt-decode';
 
@@ -37,8 +39,10 @@ class WelcomeUser extends React.Component {
             if (tokn) {
                 let userId = jwtDecode(tokn).id;
                 Promise.all(
-                    this.props.fetchUsers(),
-                    this.props.fetchAllChat(10)
+                    this.props.fetchUsers(10,0,tokn),
+                    this.props.fetchAllChat(10,0,tokn),
+                    this.props.fetchTeams(10,0,tokn),
+                    this.props.fetchUser(userId,tokn)
                 ).then(result => {
                     // console.log('FETCHED ALL', result)
                     this.props.navigation.navigate('Home');
@@ -88,9 +92,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchProps = (dispatch) => {
     return {
-        fetchUsers(limit,offset){
+        fetchUsers(limit,offset, token){
             return new Promise ((resolve,reject) => {
-                AsyncStorage.getItem('jwt').then(token => {
+                // AsyncStorage.getItem('jwt').then(token => {
                     dispatch(fetchUsersRequest(limit, offset, token)).then((result) => {
                         if (result.payload.data.meta.success) {
                             dispatch(fetchUsersSuccess(result.payload.data.data))
@@ -103,27 +107,61 @@ const mapDispatchProps = (dispatch) => {
                         dispatch(fetchUsersFailure('Cannot fetch users !'))
                         reject('Cannot fetch users !')
                     })
+                // })
+            })
+        },
+
+        fetchUser(id, token){
+            return new Promise ((resolve,reject) => {
+                dispatch(fetchUserRequest(id,token)).then((result) => {
+
+                    if(result.payload.data){
+                        dispatch(fetchUserSuccess(result.payload.data))
+                    }else{
+                        dispatch(fetchUserFailure(result.payload.data))
+                    }
+                }).catch(err=>{
+                    console.log('err', err)
+                    dispatch(fetchUserFailure('Something went wrong !'))
+                    reject('Something went wrong !')
                 })
             })
         },
 
-        fetchAllChat(limit){
+        fetchTeams(limit,offset, token){
+            return new Promise ((resolve,reject) => {
+                // AsyncStorage.getItem('jwt').then(token=>{
+                    // console.log('TOKEN IS', token)
+                    dispatch(fetchTeamsRequest(limit,offset,token)).then((result) => {
+                        if(result.payload.data){
+                            dispatch(fetchTeamsSuccess(result.payload.data))
+                        }else{
+                            dispatch(fetchTeamsFailure(result.payload.data))
+                        }
+                    }).catch(err=>{
+                        dispatch(fetchTeamsFailure('Something went wrong !'))
+                        reject('Something went wrong !')
+                    })
+                // })
+            })
+        },
+
+        fetchAllChat(limit,offset,token){
             return new Promise((resolve, reject) => {
-                AsyncStorage.getItem('jwt').then(token => {
-                    dispatch(fetchAllChatRequest(limit,token)).then(( result) => {
-                        if (result.payload.data.meta.success) {
-                            dispatch(fetchAllChatSuccess(result.payload.data.data))
+                // AsyncStorage.getItem('jwt').then(token => {
+                    dispatch(fetchAllChatRequest(limit,offset, token)).then(( result) => {
+                        if (result.payload.data) {
+                            dispatch(fetchAllChatSuccess(result.payload.data))
                         } else {
-                            dispatch(fetchAllChatFailure(result.payload.data.data))
+                            dispatch(fetchAllChatFailure(result.payload.data))
                         }
                     }).catch(err => {
                         console.log('err', err)
                         dispatch(fetchAllChatFailure('Cant fetch your chat !'))
                         reject('Cant fetch your chat !');
-
                     })
                 })
-            })
+            // })
         }
     }
 }

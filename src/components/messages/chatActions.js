@@ -90,18 +90,18 @@ export const updateAllChatSuccess = (payload) => {
     }
 }
 
-export const fetchAllChatRequest = (limit=10,token) => {
+export const fetchAllChatRequest = (limit=10,offset=0,token) => {
 
     const HeadersBearer = {'Authorization':'Bearer ' + token}
     let request = axios({
         method:'get',
-        url:APP_URL.CHAT_URL + '?limit' + limit,
+        url:APP_URL.CHAT_URL + '?limit=' + limit + '&offset=' + offset,
         headers:HeadersBearer
     })
 
     return {
         type: FETCH_ALL_CHAT_REQUEST,
-        payload:request
+        payload: request
     }
 }
 

@@ -5,6 +5,7 @@ import {Grid, Row, Col} from 'react-native-easy-grid';
 import {Container,Toast, Spinner,Thumbnail,List,ListItem,Left,Right, Header,Body,Content,Form, Item,Input, Label, Button,Text, Icon} from 'native-base';
 import moment from 'moment';
 import ChatList from './chatList';
+import {fetchAllChatRequest,fetchAllChatSuccess,fetchAllChatFailure} from './chatActions';
 
 const style = StyleSheet.create({
     container:{
@@ -29,14 +30,29 @@ class ChatListContainer extends React.Component {
         super(props);
     }
 
+    // loadMoreChat = (limit,offset) => {
+    //     this.props.fetchAllChat(limit,offset)
+    // }
+
     render(){
-        let {ChatList:chatList, navigation} = this.props;
+        let {ChatList:chatList, navigation,fetchAllChat} = this.props;
 
-        let data = chatList.loader ? <Spinner /> : <Text>No Conversation yet !</Text>;
+        let showLoader = chatList.loading && <Spinner />;
+        // <Text>No Conversation yet !</Text>;
+        console.log('DATA', !!chatList.data);
 
-        return chatList.data ?
-                <ChatList chatList={chatList} navigation={navigation}/>
-            : data;
+        // if(chatList.loading){
+        //     return <Spinner />;
+        // }
+
+        if(!!chatList.data){
+            return <ChatList chatList={chatList.data}
+                              navigation={navigation}
+                              loadMoreChat={fetchAllChat}/>
+        }
+
+        return <Text>No Conversation yet !</Text>;
+
     }
 }
 
@@ -48,23 +64,27 @@ const mapStateToProps = (state) =>{
 
 const mapDispatchToProps = (dispatch) =>{
     return {
-        // fetchUsers(limit,offset){
-        //     return new Promise ((resolve,reject) => {
-        //         AsyncStorage.getItem('jwt').then(token=>{
-        //             dispatch(fetchUsersRequest(limit,offset,token)).then((result) => {
-        //                 if(result.payload.data.success){
-        //                     dispatch(fetchUsersSuccess(result))
-        //                 }else{
-        //                     dispatch(fetchUsersFailure(result))
-        //                 }
-        //             }).catch(err=>{
-        //                 dispatch(fetchUsersFailure('Something went wrong !'))
-        //                 reject('Something went wrong !')
-        //             })
-        //         })
-        //     })
-        // }
+        fetchAllChat(limit,offset){
+            return new Promise((resolve, reject) => {
+                AsyncStorage.getItem('jwt').then(token => {
+                    dispatch(fetchAllChatRequest(limit, offset, token)).then((result) => {
+                        // console.log('RESULT', Object.keys(result.payload.data))
+                        if (result.payload.data) {
+                            dispatch(fetchAllChatSuccess(result.payload.data))
+                            resolve(result.payload.data)
+                        } else {
+                            dispatch(fetchAllChatFailure(result.payload.data));
+                            reject(result.payload.data);
+                        }
+                    }).catch(err => {
+                        console.log('err', err)
+                        dispatch(fetchAllChatFailure('Cant fetch your chat !'))
+                        reject('Cant fetch your chat !');
+                    })
+                })
+            })
+        }
     }
 }
 
-export default connect(mapStateToProps)(ChatListContainer);
+export default connect(mapStateToProps,mapDispatchToProps)(ChatListContainer);

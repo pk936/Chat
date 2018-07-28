@@ -21,10 +21,13 @@ import {
     Right,
     Body,
     Icon,
-    Text
+    Text,
+
 } from 'native-base';
+import {KeyboardAvoidingView, View, ScrollView} from 'react-native'
 import {GiftedChat} from 'react-native-gifted-chat';
 import socket from '../../setup/socket';
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
 export default class ChatWindow extends React.Component {
     constructor(props){
@@ -66,10 +69,12 @@ export default class ChatWindow extends React.Component {
                 system: true
             }, ...data.messages]
 
-            return <GiftedChat messages={messages}
-                               user={{_id:loggedInUserId}}
-                               onSend={this.sendMessage}
-            />;
+            return <View style={{flex:1}}>
+                <GiftedChat messages={messages}
+                            user={{_id:loggedInUserId}}
+                            onSend={this.sendMessage}
+                />
+            </View>
         }else{
             return <Spinner />
         }
