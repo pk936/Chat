@@ -54,9 +54,6 @@ class WelcomeUser extends React.Component {
 
     render(){
         let {User} = this.props;
-        // let {navigation} = this.props;
-        // console.log('LoggedInUser...', User);
-
         let userName = User.data ? User.data.name : '';
 
         return (

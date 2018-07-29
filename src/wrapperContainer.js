@@ -107,6 +107,12 @@ class WrapperContainer extends React.Component {
         this.setState({showSearchResultPage:!this.state.showSearchResultPage})
     }
 
+    viewProfile = () => {
+        // this.props.navigation.navigate('Profile', {
+        //     userId:this.props.LoggedInUser.data.id
+        // })
+        this.props.navigation.navigate('Profile');
+    }
 
     render(){
         let {navigation} = this.props;
@@ -160,7 +166,7 @@ class WrapperContainer extends React.Component {
                                 <Icon active name="navigate"/>
                                 <Text>Navigate</Text>
                             </Button>
-                            <Button vertical onPress={e => this.props.navigation.navigate('Profile')}>
+                            <Button vertical onPress={this.viewProfile}>
                                 <Icon name="person"/>
                                 <Text>Me</Text>
                             </Button>
@@ -175,7 +181,8 @@ class WrapperContainer extends React.Component {
 const mapStateToProps = (state) => {
     // console.log('STATE', state.Chat.chat)
     return {
-        ActiveChat: state.Chat.chat
+        ActiveChat: state.Chat.chat,
+        // LoggedInUser:state.LoggedInUser.loggedInUser
     }
 }
 

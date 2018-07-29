@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d2aad09-43a1-4213-a0a3-a14550095294" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/home/welcomeUser.js" afterPath="$PROJECT_DIR$/src/components/home/welcomeUser.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/messages/chatList.js" afterPath="$PROJECT_DIR$/src/components/messages/chatList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/messages/chatReducer.js" afterPath="$PROJECT_DIR$/src/components/messages/chatReducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/profile/profileContainer.js" afterPath="$PROJECT_DIR$/src/components/profile/profileContainer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/profile/userProfile.js" afterPath="$PROJECT_DIR$/src/components/profile/userProfile.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/screens/appScreens.js" afterPath="$PROJECT_DIR$/src/screens/appScreens.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/wrapperContainer.js" afterPath="$PROJECT_DIR$/src/wrapperContainer.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/src/components/home/welcomeUser.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2157">
-              <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+              <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
               <folding>
                 <element signature="e#41#67#0" expanded="true" />
               </folding>
@@ -53,34 +56,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatReducer.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/components/messages/chatReducer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="wrapperContainer.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="wrapperContainer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/wrapperContainer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="574">
-              <caret line="185" column="31" lean-forward="false" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+            <state relative-caret-position="437">
+              <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
               <folding>
                 <element signature="e#41#67#0" expanded="true" />
+                <element signature="n#!!block;n#componentDidMount#0;n#WrapperContainer#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mainNavigator.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/screens/mainNavigator.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -88,8 +72,20 @@
       <file leaf-file-name="appScreens.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/screens/appScreens.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
+            <state relative-caret-position="171">
+              <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+              <folding>
+                <element signature="e#40#94#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="signInReducer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/auth/signInReducer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="15" column="42" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -98,10 +94,22 @@
       <file leaf-file-name="chatList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
+            <state relative-caret-position="323">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="e#41#67#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profileContainer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/components/profile/profileContainer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="267">
+              <caret line="50" column="39" lean-forward="false" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#26#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -110,20 +118,10 @@
       <file leaf-file-name="userProfile.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/profile/userProfile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="profileContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/components/profile/profileContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="90" column="9" lean-forward="true" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
+            <state relative-caret-position="608">
+              <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
               <folding>
-                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#40#66#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -141,9 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>g</find>
-      <find>ge</find>
-      <find>get</find>
       <find>getpa</find>
       <find>connectionChanged</find>
       <find>L</find>
@@ -169,8 +164,11 @@
       <find>console</find>
       <find>console.</find>
       <find>console.l</find>
-      <find>console.log</find>
       <find>data</find>
+      <find>console.log</find>
+      <find>l</find>
+      <find>logged</find>
+      <find>loggedInUser</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -188,7 +186,6 @@
         <option value="$PROJECT_DIR$/src/authenticateUser.js" />
         <option value="$PROJECT_DIR$/src/components/messages/messageList.js" />
         <option value="$PROJECT_DIR$/src/components/users/usersList.js" />
-        <option value="$PROJECT_DIR$/src/components/profile/userProfile.js" />
         <option value="$PROJECT_DIR$/src/screens/tabNavigator.js" />
         <option value="$PROJECT_DIR$/src/screens/bottomTabNavigator.js" />
         <option value="$PROJECT_DIR$/src/screens/authScreens.js" />
@@ -222,14 +219,15 @@
         <option value="$PROJECT_DIR$/src/components/search/searchContainer.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatWindow.js" />
         <option value="$PROJECT_DIR$/src/middleware.js" />
-        <option value="$PROJECT_DIR$/src/wrapperContainer.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatActions.js" />
         <option value="$PROJECT_DIR$/src/components/home/welcomeUser.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatListContainer.js" />
-        <option value="$PROJECT_DIR$/src/components/profile/profileContainer.js" />
-        <option value="$PROJECT_DIR$/src/screens/appScreens.js" />
-        <option value="$PROJECT_DIR$/src/components/messages/chatList.js" />
         <option value="$PROJECT_DIR$/src/components/messages/chatReducer.js" />
+        <option value="$PROJECT_DIR$/src/screens/appScreens.js" />
+        <option value="$PROJECT_DIR$/src/components/profile/userProfile.js" />
+        <option value="$PROJECT_DIR$/src/components/profile/profileContainer.js" />
+        <option value="$PROJECT_DIR$/src/components/messages/chatList.js" />
+        <option value="$PROJECT_DIR$/src/wrapperContainer.js" />
       </list>
     </option>
   </component>
@@ -758,12 +756,12 @@
       <workItem from="1532793092659" duration="931000" />
       <workItem from="1532623957483" duration="35043000" />
       <workItem from="1532770178252" duration="59000" />
-      <workItem from="1532770272370" duration="16830000" />
+      <workItem from="1532770272370" duration="21171000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="271674000" />
+    <option name="totallyTimeSpent" value="276015000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -786,7 +784,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7967391" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5402174" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -893,13 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/authScreens.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -943,13 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/auth/signInReducer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="1" lean-forward="true" selection-start-line="23" selection-start-column="1" selection-end-line="23" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/auth/signInActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="557">
@@ -989,6 +973,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
           <caret line="32" column="27" lean-forward="false" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1019,13 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="456">
           <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/bottomTabNavigator.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="8" column="19" lean-forward="false" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1123,46 +1101,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/profile/userProfile.js">
+    <entry file="file://$PROJECT_DIR$/src/components/messages/chatReducer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="38" column="23" lean-forward="false" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        <state relative-caret-position="969">
+          <caret line="51" column="13" lean-forward="true" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="13" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/profile/profileContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="90" column="9" lean-forward="true" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/screens/appScreens.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="21" column="8" lean-forward="true" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/wrapperContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="574">
-          <caret line="185" column="31" lean-forward="false" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
-          <folding>
-            <element signature="e#41#67#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/home/welcomeUser.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2157">
-          <caret line="152" column="0" lean-forward="false" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
           <folding>
             <element signature="e#41#67#0" expanded="true" />
           </folding>
@@ -1187,29 +1137,86 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
+    <entry file="file://$PROJECT_DIR$/src/screens/authScreens.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="65" column="48" lean-forward="true" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-          <folding>
-            <element signature="e#41#67#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="95">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/screens/mainNavigator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="14" column="16" lean-forward="false" selection-start-line="14" selection-start-column="16" selection-end-line="14" selection-end-column="16" />
+          <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/messages/chatReducer.js">
+    <entry file="file://$PROJECT_DIR$/src/components/profile/userProfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="608">
+          <caret line="43" column="31" lean-forward="true" selection-start-line="43" selection-start-column="31" selection-end-line="43" selection-end-column="31" />
+          <folding>
+            <element signature="e#40#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/profile/profileContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="267">
+          <caret line="50" column="39" lean-forward="false" selection-start-line="50" selection-start-column="31" selection-end-line="50" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/auth/signInReducer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" column="42" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="42" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/bottomTabNavigator.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="27" lean-forward="false" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/screens/appScreens.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="12" column="41" lean-forward="false" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding>
+            <element signature="e#40#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/messages/chatList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#41#67#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/wrapperContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="114" column="5" lean-forward="true" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
+          <folding>
+            <element signature="e#41#67#0" expanded="true" />
+            <element signature="n#!!block;n#componentDidMount#0;n#WrapperContainer#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
